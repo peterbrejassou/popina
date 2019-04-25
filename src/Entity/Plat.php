@@ -28,6 +28,7 @@ class Plat
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Carte", inversedBy="plats")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $carte;
 

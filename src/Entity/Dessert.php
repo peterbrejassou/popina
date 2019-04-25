@@ -33,6 +33,7 @@ class Dessert
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Carte", inversedBy="desserts")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $carte;
 

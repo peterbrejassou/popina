@@ -43,6 +43,11 @@ class Carte
      */
     private $menus;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Restaurant")
+     */
+    private $restaurant;
+
     public function __construct()
     {
         $this->entrees = new ArrayCollection();
@@ -210,5 +215,21 @@ class Carte
         }
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRestaurant()
+    {
+        return $this->restaurant;
+    }
+
+    /**
+     * @param mixed $restaurant
+     */
+    public function setRestaurant($restaurant): void
+    {
+        $this->restaurant = $restaurant;
     }
 }

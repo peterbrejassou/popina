@@ -187,4 +187,20 @@ class Restaurant
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCarte()
+    {
+        return $this->carte;
+    }
+
+    /**
+     * @param mixed $carte
+     */
+    public function setCarte($carte): void
+    {
+        $this->carte = $carte;
+    }
 }
