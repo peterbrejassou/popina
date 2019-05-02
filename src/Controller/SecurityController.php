@@ -3,19 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationType;
+use App\Form\InscriptionType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
     public function inscription(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
-        $form = $this->createForm(RegistrationType::class, $user);
+        $form = $this->createForm(InscriptionType::class, $user);
 
         $form->handleRequest($request);
 
@@ -30,7 +31,8 @@ class SecurityController extends AbstractController
         }
 
         return $this->render('security/inscription.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+
         ]);
     }
 
