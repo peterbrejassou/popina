@@ -1,7 +1,8 @@
-Login: Collegamento
-Email: Indirizzo email
-Password: Password
-Save: Convalidare
-Register: Iscrizione
-Username: Nome utente
-Confirm password: Conferma della password
+login: collegamento
+email: indirizzo email
+password: password
+save: convalidare
+register: iscrizione
+username: nome utente
+confirm password: conferma della password
+logout: disconnettersi

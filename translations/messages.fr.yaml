@@ -1,7 +1,10 @@
-Login: Connexion
-Email: Adresse email
-Password: Mot de passe
-Save: Valider
-Register: Inscription
-Username: Nom d'utilisateur
-Confirm password: Confirmation du mot de passe
+login: connexion
+email: adresse email
+password: mot de passe
+save: valider
+register: inscription
+username: nom d'utilisateur
+confirm password: confirmation du mot de passe
+Logout: déconnexion
+welcome: bienvenue
+admin: administration

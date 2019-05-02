@@ -1,10 +1,10 @@
 home:
     path: /
-    controller: App\Controller\HomeController::home
+    controller: App\Controller\HomeController::welcome
 
-inscription:
-    path: /inscription
-    controller: App\Controller\SecurityController::inscription
+register:
+    path: /register
+    controller: App\Controller\SecurityController::register
 
 login:
     path: /login
