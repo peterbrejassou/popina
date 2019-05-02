@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,23 +21,46 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $code_postal;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $ville;
+
+     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     * @Assert\Type("string")
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
+     * @Assert\Email
+     */
+    private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -45,16 +69,20 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $horaires;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="restaurant", cascade={"persist", "remove"})
+     * @ORM\Column(type="string")
      */
     private $photo;
 
@@ -62,11 +90,6 @@ class Restaurant
      * @ORM\OneToOne(targetEntity="App\Entity\Carte", mappedBy="restaurant", cascade={"persist", "remove"})
      */
     private $carte;
-
-    public function __construct()
-    {
-        $this->photo = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -121,6 +144,30 @@ class Restaurant
         return $this;
     }
 
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
     public function getSiteWeb(): ?string
     {
         return $this->site_web;
@@ -157,33 +204,14 @@ class Restaurant
         return $this;
     }
 
-    /**
-     * @return Collection|Photo[]
-     */
-    public function getPhoto(): Collection
+    public function getPhoto()
     {
         return $this->photo;
     }
 
-    public function addPhoto(Photo $photo): self
+    public function setPhoto($photo)
     {
-        if (!$this->photo->contains($photo)) {
-            $this->photo[] = $photo;
-            $photo->setRestaurant($this);
-        }
-
-        return $this;
-    }
-
-    public function removePhoto(Photo $photo): self
-    {
-        if ($this->photo->contains($photo)) {
-            $this->photo->removeElement($photo);
-            // set the owning side to null (unless already changed)
-            if ($photo->getRestaurant() === $this) {
-                $photo->setRestaurant(null);
-            }
-        }
+        $this->photo = $photo;
 
         return $this;
     }

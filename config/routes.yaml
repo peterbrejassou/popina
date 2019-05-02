@@ -16,4 +16,4 @@ logout:
 
 restaurant-detail:
     path: /restaurant/{id}
-    controller: App\Controller\RestaurantController::restaurantDetail
+    controller: App\Controller\RestaurantController::form
