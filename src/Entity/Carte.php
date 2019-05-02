@@ -44,7 +44,7 @@ class Carte
     private $menus;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Restaurant")
+     * @ORM\OneToOne(targetEntity="App\Entity\Restaurant", inversedBy="carte")
      */
     private $restaurant;
 
