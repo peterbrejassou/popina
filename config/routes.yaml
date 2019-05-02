@@ -2,6 +2,18 @@ home:
     path: /
     controller: App\Controller\HomeController::home
 
+inscription:
+    path: /inscription
+    controller: App\Controller\SecurityController::inscription
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+logout:
+    path: /lougout
+    controller: App\Controller\SecurityController::logout
+
 restaurant-detail:
     path: /restaurant/{id}
     controller: App\Controller\RestaurantController::form
