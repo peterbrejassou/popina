@@ -7,12 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class RestaurantController extends AbstractController
 {
-    public function restaurantDetail($id)
+    public function restaurantDetail(Restaurant $restaurant)
     {
-        $restaurant = $this->getDoctrine()
-            ->getRepository(Restaurant::class)
-            ->find($id);
-
         return $this->render('restaurant-detail.html.twig', [
             'restaurant' => $restaurant,
         ]);
