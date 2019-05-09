@@ -18,9 +18,9 @@
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
             $builder
-                ->add('nom', TextType::class,['label' => 'nom dessert'])
-                ->add('description', TextType::class,['label' => 'description'])
-                ->add('save', SubmitType::class, ['label' => 'restaurant.save'])
+                ->add('nom', TextType::class,['label' => 'dessert.nom'])
+                ->add('description', TextType::class,['label' => 'carte.description'])
+                ->add('save', SubmitType::class, ['label' => 'carte.save'])
             ;
         }
     }

@@ -13,11 +13,13 @@ form:
   passwords-must-match: les mots de passe doivent correspondre
   save: valider
 
-ajout_restau_titre: ajouter votre restaurant
-ajout_entree_titre: ajouter votre entrée
-ajout_plat_titre:  ajouter votre plat
-ajout_dessert_titre:  ajouter votre dessert
-ajout_boisson_titre:  ajouter votre boisson
+titre:
+  restau: ajouter votre restaurant
+  entree: ajouter votre entrée
+  plat:  ajouter votre plat
+  dessert:  ajouter votre dessert
+  boisson:  ajouter votre boisson
+
 restaurant:
   nom: Nom du restaurant
   adresse: Adresse
@@ -30,3 +32,19 @@ restaurant:
   type: Type de nourriture
   photo: Vos photos
   save: Créer
+
+entree:
+  nom: Nom de l'entrée
+plat:
+  nom: Nom du plat
+dessert:
+  nom: Nom du dessert
+boisson:
+  nom: Nom de la boisson
+  
+
+carte:
+  description: Description
+  quantite: Quantité
+  prix: Prix
+  save: Ajouter

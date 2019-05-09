@@ -19,10 +19,10 @@
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
             $builder
-                ->add('nom', TextType::class,['label' => 'nom plat'])
-                ->add('description', TextType::class,['label' => 'description']) 
-                ->add('prix', NumberType::class,['label' => 'prix'])               
-                ->add('save', SubmitType::class, ['label' => 'restaurant.save'])
+                ->add('nom', TextType::class,['label' => 'plat.nom'])
+                ->add('description', TextType::class,['label' => 'carte.description']) 
+                ->add('prix', NumberType::class,['label' => 'carte.prix'])               
+                ->add('save', SubmitType::class, ['label' => 'carte.save'])
             ;
         }
     }

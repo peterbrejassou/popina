@@ -19,11 +19,11 @@
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
             $builder
-                ->add('nom', TextType::class,['label' => 'nom boisson'])
-                ->add('description', TextType::class,['label' => 'description'])
-                ->add('quantite', NumberType::class,['label' => 'quantité'])
-                ->add('prix', NumberType::class,['label' => 'prix'])
-                ->add('save', SubmitType::class, ['label' => 'restaurant.save'])
+                ->add('nom', TextType::class,['label' => 'boisson.nom'])
+                ->add('description', TextType::class,['label' => 'carte.description'])
+                ->add('quantite', NumberType::class,['label' => 'carte.quantité'])
+                ->add('prix', NumberType::class,['label' => 'carte.prix'])
+                ->add('save', SubmitType::class, ['label' => 'carte.save'])
             ;
         }
     }

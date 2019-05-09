@@ -80,6 +80,8 @@ class RestaurantController extends AbstractController
             $restaurant->addEntree($entree);
             $em->persist($entree);
             $em->flush();
+
+            return $this->redirectToRoute('restaurant-detail-admin', ['id' => $restaurant->getId()]);
         }
        
         return $this->render('form/add-entree.html.twig', 
