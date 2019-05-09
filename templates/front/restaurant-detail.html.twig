@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'front/base.html.twig' %}
 
 {% block content %}
     <div class="home">
@@ -14,7 +14,7 @@
             <p>{{ 'restaurant.horaires'|trans }} : {{restaurant.horaires}}</p>
             <p>{{ 'restaurant.type'|trans }} : {{restaurant.type}}</p>
 
-            <a href="{{ path('contact') }}">Contacter le restaurateur</a>
+            <a href="{{ path('contact', {id: restaurant.id}) }}">Contacter le restaurateur</a>
         </div>
     </div>
 {% endblock %}

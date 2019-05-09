@@ -11,7 +11,7 @@ class HomeController extends AbstractController
     public function home(EntityManagerInterface $em)
     {
         $restaurants = $em->getRepository(Restaurant::class)->findAll();
-        return $this->render('home.html.twig', [
+        return $this->render('/front/home.html.twig', [
             'restaurants' => $restaurants
         ]);
     }

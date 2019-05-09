@@ -11,7 +11,7 @@ class AdminController extends AbstractController
     public function admin(EntityManagerInterface $em)
     {
         $restaurants = $em->getRepository(Restaurant::class)->findAll();
-        return $this->render('admin.html.twig', [
+        return $this->render('back/admin.html.twig', [
             'restaurants' => $restaurants
         ]);
     }
