@@ -39,5 +39,11 @@
            <h2> Images </h2>
            <img  src="/uploads/photos/{{restaurant.photo}}" />  
         </div>
+
+        <a href="{{path('add-entree', {id:restaurant.id})}}"> Ajouter une entrée </a>
+        <a href="{{path('add-plat', {id:restaurant.id})}}"> Ajouter un plat </a>
+        <a href="{{path('add-dessert', {id:restaurant.id})}}"> Ajouter un dessert </a>
+        <a href="{{path('add-boisson', {id:restaurant.id})}}"> Ajouter une boisson </a>
     </div>
+
 {% endblock %}

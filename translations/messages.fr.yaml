@@ -17,16 +17,26 @@ form:
   send: envoyer
   save: valider
 
-ajout_restau_titre: ajouter votre restaurant
+titre:
+  restau: ajouter votre restaurant
+  entree: ajouter votre entrée
+  plat:  ajouter votre plat
+  dessert:  ajouter votre dessert
+  boisson:  ajouter votre boisson
+
 restaurant:
-  nom: nom du restaurant
-  adresse: adresse
-  cp: code postal
-  ville: ville
-  tel: numéro de téléphone
-  email: adresse mail
-  site_web: site web
-  horaires: horaires
-  type: type de nourriture
-  photo: photos
-  save: créer
+entree:
+  nom: Nom de l'entrée
+plat:
+  nom: Nom du plat
+dessert:
+  nom: Nom du dessert
+boisson:
+  nom: Nom de la boisson
+  
+
+carte:
+  description: Description
+  quantite: Quantité
+  prix: Prix
+  save: Ajouter

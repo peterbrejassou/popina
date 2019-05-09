@@ -26,6 +26,22 @@ restaurant_detail_admin:
     path: /admin/restaurant/{id}
     controller: App\Controller\RestaurantController::restaurantDetailAdmin
 
+add-entree:
+    path: /admin/restaurant/{id}/add-entree
+    controller: App\Controller\RestaurantController::addEntree
+
+add-plat:
+    path: /admin/restaurant/{id}/add-plat
+    controller: App\Controller\RestaurantController::addPlat
+
+add-dessert:
+    path: /admin/restaurant/{id}/add-dessert
+    controller: App\Controller\RestaurantController::addDessert
+
+add-boisson:
+    path: /admin/restaurant/{id}/add-boisson
+    controller: App\Controller\RestaurantController::addBoisson
+
 admin:
     path: /admin
     controller: App\Controller\AdminController::admin

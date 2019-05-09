@@ -27,10 +27,15 @@ class Plat
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Carte", inversedBy="plats")
+     * @ORM\Column(type="float")
+     */
+    private $prix;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="plats")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $carte;
+    private $restaurant;
 
     public function getId(): ?int
     {
@@ -60,15 +65,27 @@ class Plat
 
         return $this;
     }
-
-    public function getCarte(): ?Carte
+    
+    public function getPrix(): ?float
     {
-        return $this->carte;
+        return $this->prix;
     }
 
-    public function setCarte(?Carte $carte): self
+    public function setPrix(float $prix): self
     {
-        $this->carte = $carte;
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
 
         return $this;
     }
