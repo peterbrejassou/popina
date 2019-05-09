@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SecurityController extends AbstractController
 {
@@ -22,7 +21,6 @@ class SecurityController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $encryptPassword = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($encryptPassword);
-            $user->setConfirmPassword($encryptPassword);
             $manager->persist($user);
             $manager->flush();
 

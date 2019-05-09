@@ -24,7 +24,6 @@ class RestaurantController extends AbstractController
     //form ajout restaurant
     public function form(Request $request)
     {
-
         $form = new Restaurant();
 
         $formulaire = $this->createForm(RestaurantType::class, $form);

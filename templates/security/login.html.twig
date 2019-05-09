@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ 'login'|trans }}</h1>
+    <h1>{{ 'global.login'|trans }}</h1>
     <form action="{{ path('login') }}" method="POST">
         <div class="form-group">
-            <input class="form-control" type="text" placeholder="{{ 'email'|trans }}" required name="_username">
+            <input class="form-control" type="text" placeholder="{{ 'form.email'|trans }}" required name="_username">
         </div>
         <div class="form-group">
-            <input class="form-control" type="password" placeholder="{{ 'password'|trans }}" required name="_password">
+            <input class="form-control" type="password" placeholder="{{ 'form.password'|trans }}" required name="_password">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary">{{ 'save'|trans }}</button>
+            <button type="submit" class="btn btn-primary">{{ 'form.save'|trans }}</button>
         </div>
     </form>
 {% endblock %}

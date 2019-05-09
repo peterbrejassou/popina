@@ -18,17 +18,22 @@
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('login') }}">{{ 'admin'|trans }}</a>
+                        <a class="nav-link" href="{{ path('admin') }}">{{ 'global.admin'|trans }}</a>
                     </li>
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('logout') }}">{{ 'global.logout'|trans }}</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>
 
         <div class="container">
             {% block body %}
-                <h2>{{ 'welcome'|trans }}</h2>
-                <a class="btn btn-primary" href="{{ path('login') }}">{{ 'login'|trans }}</a>
-                <a class="btn btn-primary" href="{{ path('register') }}">{{ 'register'|trans }}</a>
+                <h2>{{ 'global.welcome'|trans }}</h2>
+                <a class="btn btn-primary" href="{{ path('login') }}">{{ 'global.login'|trans }}</a>
+                <a class="btn btn-primary" href="{{ path('register') }}">{{ 'global.register'|trans }}</a>
             {% endblock %}
         </div>
         {% block javascripts %}{% endblock %}

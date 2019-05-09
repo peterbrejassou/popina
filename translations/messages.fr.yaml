@@ -1,10 +1,14 @@
-login: connexion
-email: adresse email
-password: mot de passe
-save: valider
-register: inscription
-username: nom d'utilisateur
-confirm password: confirmation du mot de passe
-Logout: déconnexion
-welcome: bienvenue
-admin: administration
+global:
+  welcome: bienvenue
+  register: inscription
+  login: connexion
+  logout: déconnexion
+  admin: administration
+
+form:
+  username: nom d'utilisateur
+  email: adresse email
+  password: mot de passe
+  confirm-password: confirmation du mot de passe
+  passwords-must-match: les mots de passe doivent correspondre
+  save: valider
