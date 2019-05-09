@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="home">
+        <h1>{{restaurant.nom}}</h1>
+        <div>
+            <h2> Votre adresse </h2>
+            <p> {{restaurant.adresse}}</p>
+        </div>
+        <div>
+            <h2> Votre code postal </h2>
+            <p> {{restaurant.codePostal}}</p>
+        </div>
+        <div>
+            <h2> Votre ville </h2>
+            <p> {{restaurant.ville}}</p>
+        </div>
+        <div>
+            <h2> Numéro de téléphone </h2>
+            <p> {{restaurant.telephone}}</p>
+        </div>
+        <div>
+            <h2> Adresse mail </h2>
+            <p> {{restaurant.email}}</p>
+        </div>
+        <div>
+            <h2> Votre site web </h2>
+            <p> {{restaurant.siteWeb}}</p>
+        </div>
+        <div>
+            <h2> Vos Horaires </h2>
+            <p> {{restaurant.horaires}}</p>
+        </div>
+        <div>
+            <h2> Type de restaurant </h2>
+            <p> {{restaurant.type}}</p>
+        </div>
+        <div>
+           <h2> Images </h2>
+           <img  src="/uploads/photos/{{restaurant.photo}}" />  
+        </div>
+    </div>
+{% endblock %}

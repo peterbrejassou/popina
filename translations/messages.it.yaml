@@ -6,3 +6,16 @@ register: iscrizione
 username: nome utente
 confirm password: conferma della password
 logout: disconnettersi
+ajout_restau_titre: aggiungi il tuo ristorante
+restaurant:
+  nom: nome del ristorante
+  adresse: recapito
+  cp: contea
+  ville: città
+  tel: numero di telefono
+  email: indirizzo e-mail
+  site_web: sito web
+  horaire: prospetti
+  type: tipo di alimento
+  photo: foto
+  save: creare

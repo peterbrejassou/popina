@@ -13,7 +13,7 @@
     use Symfony\Component\Validator\Constraints\File;
     use Symfony\Component\Validator\Constraints\Regex;
 
-    class RestaurantType extends AbstractType
+    class CarteType extends AbstractType
     {
         public function buildForm(FormBuilderInterface $builder, array $options)
         {

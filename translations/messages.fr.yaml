@@ -12,3 +12,17 @@ form:
   confirm-password: confirmation du mot de passe
   passwords-must-match: les mots de passe doivent correspondre
   save: valider
+
+ajout_restau_titre: ajouter votre restaurant
+restaurant:
+  nom: Nom du restaurant
+  adresse: Adresse
+  cp: Code postal
+  ville: Ville
+  tel: Numéro de téléphone
+  email: Adresse mail
+  site_web: Site web
+  horaire: Horaires
+  type: Type de nourriture
+  photo: Vos photos
+  save: Créer

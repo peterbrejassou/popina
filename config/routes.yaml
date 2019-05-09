@@ -20,7 +20,15 @@ logout:
 
 restaurant-detail:
     path: /restaurant/{id}
-    controller: App\Controller\RestaurantController::form
+    controller: App\Controller\RestaurantController::restaurantDetail
+
+add-restaurant:
+    path: /admin/add-restaurant
+    controller: App\Controller\RestaurantController::addRestaurant
+
+restaurant-detail-admin:
+    path: /admin/restaurant/{id}
+    controller: App\Controller\RestaurantController::restaurantDetailAdmin
 
 admin:
     path: /admin
