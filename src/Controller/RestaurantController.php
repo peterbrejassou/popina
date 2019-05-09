@@ -3,6 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use App\Entity\Entree;
+use App\Entity\PLat;
+use App\Entity\Dessert;
+use App\Entity\Boisson;
+use App\Controller\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -10,12 +15,23 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\RestaurantType;
+use App\Form\EntreeType;
+use App\Form\PlatType;
+use App\Form\DessertType;
+use App\Form\BoissonType;
 
 class RestaurantController extends AbstractController
 {
     public function restaurantDetail(Restaurant $restaurant)
     {
         return $this->render('restaurant-detail.html.twig', [
+            'restaurant' => $restaurant,
+        ]);
+    }
+
+    public function restaurantDetailAdmin(Restaurant $restaurant)
+    {
+        return $this->render('restaurant-detail-admin.html.twig', [
             'restaurant' => $restaurant,
         ]);
     }
@@ -38,21 +54,87 @@ class RestaurantController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($form);
-            $em->flush();
-
-            $this->addFlash(
-                'notice',
-                'Votre restaurant a bien été ajouté'
-            );
+            $em->flush();   
             
-            return $this->render('restaurant-detail-admin.html.twig', ['restaurant' => $form]);
-
+            return $this->redirectToRoute('restaurant-detail-admin', ['id' => $form->getId()]);
         }
        
         return $this->render('form/new.html.twig', [
             'form' => $formulaire->createView(),
         ]);
     }
+
+
+    //ajout d'une entrée
+    public function addEntree(Request $request, Restaurant $restaurant)
+    {
+        $entree = new Entree();
+
+        $entree_ajout = $this->createForm(EntreeType::class, $entree);
+
+        $entree_ajout->handleRequest($request);
+
+        if ($entree_ajout->isSubmitted() && $entree_ajout->isValid()) {
+            
+            $em = $this->getDoctrine()->getManager();
+            $restaurant->addEntree($entree);
+            $em->persist($entree);
+            $em->flush();
+        }
+       
+        return $this->render('form/add-entree.html.twig', 
+         [
+            'restaurant' => $restaurant,
+            'entree' => $entree_ajout->createView(),
+        ]);
+    }
+    // //ajout d'un plat
+    // public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
+    // {
+    //     $plat = new Plat();
+
+    //     $plat_ajout = $this->createForm(PlatType::class, $plat);
+
+    //     $plat_ajout->handleRequest($request);
+
+    //     if ($plat_ajout->isSubmitted() && $plat_ajout->isValid()) {
+
+    //         $restaurant->addEntree($plat);
+    //         $em->persist($plat);
+    //         $em->flush();
+
+    //     }
+       
+    //     return $this->render('form/add-plat.html.twig', 
+    //      [
+    //         'restaurant' => $restaurant,
+    //         'plat' => $plat_ajout->createView(),
+    //     ]);
+    // }
+
+    // //ajout d'un dessert
+    // public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
+    // {
+    //     $dessert = new Dessert();
+
+    //     $dessert_ajout = $this->createForm(DessertType::class, $dessert);
+
+    //     $dessert_ajout->handleRequest($request);
+
+    //     if ($dessert_ajout->isSubmitted() && $dessert_ajout->isValid()) {
+
+    //         $restaurant->addEntree($dessert);
+    //         $em->persist($dessert);
+    //         $em->flush();
+
+    //     }
+       
+    //     return $this->render('form/add-dessert.html.twig', 
+    //      [
+    //         'restaurant' => $restaurant,
+    //         'dessert' => $dessert_ajout->createView(),
+    //     ]);
+    // }
 
 
 }

@@ -32,10 +32,10 @@ class Dessert
     private $prix;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Carte", inversedBy="desserts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="desserts")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $carte;
+    private $restaurant;
 
     public function getId(): ?int
     {
@@ -78,14 +78,14 @@ class Dessert
         return $this;
     }
 
-    public function getCarte(): ?Carte
+    public function getRestaurant(): ?Restaurant
     {
-        return $this->carte;
+        return $this->restaurant;
     }
 
-    public function setCarte(?Carte $carte): self
+    public function setRestaurant(?Restaurant $restaurant): self
     {
-        $this->carte = $carte;
+        $this->restaurant = $restaurant;
 
         return $this;
     }

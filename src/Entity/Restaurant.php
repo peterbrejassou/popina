@@ -86,10 +86,33 @@ class Restaurant
      */
     private $photo;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Carte", mappedBy="restaurant", cascade={"persist", "remove"})
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Entree", mappedBy="restaurant", cascade={"persist", "remove"})
      */
-    private $carte;
+    private $entrees;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Plat", mappedBy="restaurant", cascade={"persist", "remove"})
+     */
+    private $plats;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Dessert", mappedBy="restaurant", cascade={"persist", "remove"})
+     */
+    private $desserts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Boisson", mappedBy="restaurant", cascade={"persist", "remove"})
+     */
+    private $boissons;
+
+    public function __construct()
+    {
+        $this->entrees = new ArrayCollection();
+        $this->plats = new ArrayCollection();
+        $this->desserts = new ArrayCollection();
+        $this->boissons = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -216,19 +239,128 @@ class Restaurant
         return $this;
     }
 
+
     /**
-     * @return mixed
+     * @return Collection|Entrees[]
      */
-    public function getCarte()
+    public function getEntrees(): Collection
     {
-        return $this->carte;
+        return $this->entrees;
+    }
+
+    public function addEntree(Entree $entrees): self
+    {
+        if (!$this->entrees->contains($entrees)) {
+            $this->entrees[] = $entrees;
+            $entrees->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEntree(Entree $entrees): self
+    {
+        if ($this->entrees->contains($entrees)) {
+            $this->entrees->removeElement($entrees);
+            // set the owning side to null (unless already changed)
+            if ($entrees->getRestaurant() === $this) {
+                $entrees->setRestaurant(null);
+            }
+        }
+
+        return $this;
     }
 
     /**
-     * @param mixed $carte
+     * @return Collection|Plat[]
      */
-    public function setCarte($carte): void
+    public function getPlats(): Collection
     {
-        $this->carte = $carte;
+        return $this->plats;
+    }
+
+    public function addPlat(Entree $plat): self
+    {
+        if (!$this->plats->contains($plat)) {
+            $this->plats[] = $plat;
+            $plat->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlat(Entree $plat): self
+    {
+        if ($this->plats->contains($plat)) {
+            $this->plats->removeElement($plat);
+            // set the owning side to null (unless already changed)
+            if ($plat->getRestaurant() === $this) {
+                $plat->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dessert[]
+     */
+    public function getDesserts(): Collection
+    {
+        return $this->desserts;
+    }
+
+    public function addDessert(Entree $dessert): self
+    {
+        if (!$this->desserts->contains($dessert)) {
+            $this->desserts[] = $dessert;
+            $dessert->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDessert(Entree $dessert): self
+    {
+        if ($this->desserts->contains($dessert)) {
+            $this->desserts->removeElement($dessert);
+            // set the owning side to null (unless already changed)
+            if ($dessert->getRestaurant() === $this) {
+                $dessert->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Boisson[]
+     */
+    public function getBoissons(): Collection
+    {
+        return $this->boissons;
+    }
+
+    public function addBoisson(Entree $boisson): self
+    {
+        if (!$this->boissons->contains($boisson)) {
+            $this->boissons[] = $boisson;
+            $boisson->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBoisson(Entree $boisson): self
+    {
+        if ($this->boissons->contains($boisson)) {
+            $this->boissons->removeElement($boisson);
+            // set the owning side to null (unless already changed)
+            if ($boisson->getRestaurant() === $this) {
+                $boisson->setRestaurant(null);
+            }
+        }
+
+        return $this;
     }
 }

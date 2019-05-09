@@ -7,6 +7,7 @@ username: nome utente
 confirm password: conferma della password
 logout: disconnettersi
 ajout_restau_titre: aggiungi il tuo ristorante
+ajout_entree_titre: aggiungi la tua entrata
 restaurant:
   nom: nome del ristorante
   adresse: recapito
