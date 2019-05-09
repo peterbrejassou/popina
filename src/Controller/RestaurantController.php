@@ -22,7 +22,7 @@ class RestaurantController extends AbstractController
 
 
     //form ajout restaurant
-    public function form(Request $request)
+    public function addRestaurant(Request $request)
     {
 
         $form = new Restaurant();
@@ -46,7 +46,7 @@ class RestaurantController extends AbstractController
                 'Votre restaurant a bien été ajouté'
             );
             
-            return $this->redirectToRoute('home');
+            return $this->render('restaurant-detail-admin.html.twig', ['restaurant' => $form]);
 
         }
        
@@ -54,4 +54,6 @@ class RestaurantController extends AbstractController
             'form' => $formulaire->createView(),
         ]);
     }
+
+
 }
