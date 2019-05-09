@@ -1,9 +1,5 @@
-welcome:
-    path: /
-    controller: App\Controller\HomeController::welcome
-
 home:
-    path: /home
+    path: /
     controller: App\Controller\HomeController::home
 
 register:
@@ -18,19 +14,23 @@ logout:
     path: /lougout
     controller: App\Controller\SecurityController::logout
 
-restaurant-detail:
+restaurant_detail:
     path: /restaurant/{id}
     controller: App\Controller\RestaurantController::restaurantDetail
 
-add-restaurant:
+add_restaurant:
     path: /admin/add-restaurant
     controller: App\Controller\RestaurantController::addRestaurant
 
-restaurant-detail-admin:
+restaurant_detail_admin:
     path: /admin/restaurant/{id}
     controller: App\Controller\RestaurantController::restaurantDetailAdmin
 
 admin:
     path: /admin
     controller: App\Controller\AdminController::admin
+
+contact:
+    path: /restaurant/{id}/contact
+    controller: App\Controller\RestaurantController::contact
 

@@ -1,5 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Admin page</h1>
+{% block content %}
+    <h1>Administration</h1>
+
+    <h3>Liste des restaurants</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+            </tr>
+        </thead>
+            <tbody>
+            {% for restaurant in restaurants %}
+                <tr>
+                    <td>{{ restaurant.id }}</td>
+                    <td>{{ restaurant.nom }}</td>
+                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">Voir les détails</a></td>
+                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">Modifier</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
 {% endblock %}

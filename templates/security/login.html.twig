@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block content %}
     <h1>{{ 'global.login'|trans }}</h1>
     <form action="{{ path('login') }}" method="POST">
         <div class="form-group">
@@ -12,5 +12,7 @@
         <div class="form-group">
             <button type="submit" class="btn btn-primary">{{ 'form.save'|trans }}</button>
         </div>
+
+        <a class="btn btn-primary" href="{{ path('register') }}">{{ 'global.no-account'|trans }} {{ 'global.register'|trans }}</a>
     </form>
 {% endblock %}

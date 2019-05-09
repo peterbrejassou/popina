@@ -20,11 +20,11 @@ class RegistrationType extends AbstractType
             ->add('email', EmailType::class, ['label' => 'form.email'])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'invalid_message' => 'form.passwords-must-match',
+                'invalid_message' => 'form.passwords_must_match',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
                 'first_options'  => ['label' => 'form.password'],
-                'second_options' => ['label' => 'form.confirm-password']
+                'second_options' => ['label' => 'form.confirm_password']
             ])
             ->add('save', SubmitType::class, ['label' => 'form.save'])
         ;

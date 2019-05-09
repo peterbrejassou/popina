@@ -3,18 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    public function welcome()
+    public function home(EntityManagerInterface $em)
     {
-        return $this->render('base.html.twig');
-    }
-
-    public function home()
-    {
-        $restaurants = $this->getDoctrine()->getRepository(Restaurant::class)->findAll();
+        $restaurants = $em->getRepository(Restaurant::class)->findAll();
         return $this->render('home.html.twig', [
             'restaurants' => $restaurants
         ]);
