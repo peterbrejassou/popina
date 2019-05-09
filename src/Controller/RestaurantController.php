@@ -75,7 +75,7 @@ class RestaurantController extends AbstractController
         $entree_ajout->handleRequest($request);
 
         if ($entree_ajout->isSubmitted() && $entree_ajout->isValid()) {
-            
+
             $em = $this->getDoctrine()->getManager();
             $restaurant->addEntree($entree);
             $em->persist($entree);
@@ -88,53 +88,80 @@ class RestaurantController extends AbstractController
             'entree' => $entree_ajout->createView(),
         ]);
     }
-    // //ajout d'un plat
-    // public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
-    // {
-    //     $plat = new Plat();
 
-    //     $plat_ajout = $this->createForm(PlatType::class, $plat);
+    // ajout d'un plat
+    public function addPlat(Request $request, Restaurant $restaurant)
+    {
+        $plat = new Plat();
 
-    //     $plat_ajout->handleRequest($request);
+        $plat_ajout = $this->createForm(PlatType::class, $plat);
 
-    //     if ($plat_ajout->isSubmitted() && $plat_ajout->isValid()) {
+        $plat_ajout->handleRequest($request);
 
-    //         $restaurant->addEntree($plat);
-    //         $em->persist($plat);
-    //         $em->flush();
+        if ($plat_ajout->isSubmitted() && $plat_ajout->isValid()) {
+            
+            $em = $this->getDoctrine()->getManager();
+            $restaurant->addPLat($plat);
+            $em->persist($plat);
+            $em->flush();
+        }
+        
+        return $this->render('form/add-plat.html.twig', 
+        [
+            'restaurant' => $restaurant,
+            'plat' => $plat_ajout->createView(),
+        ]);
+    }
 
-    //     }
-       
-    //     return $this->render('form/add-plat.html.twig', 
-    //      [
-    //         'restaurant' => $restaurant,
-    //         'plat' => $plat_ajout->createView(),
-    //     ]);
-    // }
+    // ajout d'un dessert
+    public function addDessert(Request $request, Restaurant $restaurant)
+    {
+        $dessert = new Dessert();
 
-    // //ajout d'un dessert
-    // public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
-    // {
-    //     $dessert = new Dessert();
+        $dessert_ajout = $this->createForm(DessertType::class, $dessert);
 
-    //     $dessert_ajout = $this->createForm(DessertType::class, $dessert);
+        $dessert_ajout->handleRequest($request);
 
-    //     $dessert_ajout->handleRequest($request);
+        if ($dessert_ajout->isSubmitted() && $dessert_ajout->isValid()) {
+            
+            $em = $this->getDoctrine()->getManager();
+            $restaurant->addDessert($dessert);
+            $em->persist($dessert);
+            $em->flush();
+        }
+        
+        return $this->render('form/add-dessert.html.twig', 
+        [
+            'restaurant' => $restaurant,
+            'dessert' => $dessert_ajout->createView(),
+        ]);
+    }
 
-    //     if ($dessert_ajout->isSubmitted() && $dessert_ajout->isValid()) {
 
-    //         $restaurant->addEntree($dessert);
-    //         $em->persist($dessert);
-    //         $em->flush();
+    // ajout d'une boisson
+    public function addBoisson(Request $request, Restaurant $restaurant)
+    {
+        $boisson = new Boisson();
 
-    //     }
-       
-    //     return $this->render('form/add-dessert.html.twig', 
-    //      [
-    //         'restaurant' => $restaurant,
-    //         'dessert' => $dessert_ajout->createView(),
-    //     ]);
-    // }
+        $boisson_ajout = $this->createForm(BoissonType::class, $boisson);
+
+        $boisson_ajout->handleRequest($request);
+
+        if ($boisson_ajout->isSubmitted() && $boisson_ajout->isValid()) {
+            
+            $em = $this->getDoctrine()->getManager();
+            $restaurant->addBoisson($boisson);
+            $em->persist($boisson);
+            $em->flush();
+        }
+        
+        return $this->render('form/add-boisson.html.twig', 
+        [
+            'restaurant' => $restaurant,
+            'boisson' => $boisson_ajout->createView(),
+        ]);
+    }
+   
 
 
 }

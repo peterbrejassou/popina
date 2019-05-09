@@ -279,7 +279,7 @@ class Restaurant
         return $this->plats;
     }
 
-    public function addPlat(Entree $plat): self
+    public function addPlat(Plat $plat): self
     {
         if (!$this->plats->contains($plat)) {
             $this->plats[] = $plat;
@@ -289,7 +289,7 @@ class Restaurant
         return $this;
     }
 
-    public function removePlat(Entree $plat): self
+    public function removePlat(Plat $plat): self
     {
         if ($this->plats->contains($plat)) {
             $this->plats->removeElement($plat);
@@ -310,7 +310,7 @@ class Restaurant
         return $this->desserts;
     }
 
-    public function addDessert(Entree $dessert): self
+    public function addDessert(Dessert $dessert): self
     {
         if (!$this->desserts->contains($dessert)) {
             $this->desserts[] = $dessert;
@@ -320,7 +320,7 @@ class Restaurant
         return $this;
     }
 
-    public function removeDessert(Entree $dessert): self
+    public function removeDessert(Dessert $dessert): self
     {
         if ($this->desserts->contains($dessert)) {
             $this->desserts->removeElement($dessert);
@@ -341,7 +341,7 @@ class Restaurant
         return $this->boissons;
     }
 
-    public function addBoisson(Entree $boisson): self
+    public function addBoisson(Boisson $boisson): self
     {
         if (!$this->boissons->contains($boisson)) {
             $this->boissons[] = $boisson;
@@ -351,7 +351,7 @@ class Restaurant
         return $this;
     }
 
-    public function removeBoisson(Entree $boisson): self
+    public function removeBoisson(Boisson $boisson): self
     {
         if ($this->boissons->contains($boisson)) {
             $this->boissons->removeElement($boisson);

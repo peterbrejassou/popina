@@ -27,6 +27,11 @@ class Plat
     private $description;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $prix;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="plats")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -57,6 +62,18 @@ class Plat
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+    
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

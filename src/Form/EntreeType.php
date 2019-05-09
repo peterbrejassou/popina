@@ -8,6 +8,7 @@
     use Symfony\Component\Form\Extension\Core\Type\TelType;
     use Symfony\Component\Form\Extension\Core\Type\EmailType;
     use Symfony\Component\Form\Extension\Core\Type\FileType;
+    use Symfony\Component\Form\Extension\Core\Type\NumberType;
     use Symfony\Component\Validator\Constraints\Length;
     use Symfony\Component\Validator\Constraints\Email;
     use Symfony\Component\Validator\Constraints\File;
@@ -18,8 +19,9 @@
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
             $builder
-                ->add('nom', TextType::class,['label' => 'nom entrée'])
+                ->add('nom', TextType::class,['label' => 'nom dessert'])
                 ->add('description', TextType::class,['label' => 'description'])
+                ->add('prix', NumberType::class,['label' => 'prix'])
                 ->add('save', SubmitType::class, ['label' => 'restaurant.save'])
             ;
         }

@@ -32,6 +32,11 @@ class Boisson
     private $quantite;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $prix;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="boissons")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -74,6 +79,18 @@ class Boisson
     public function setQuantite(float $quantite): self
     {
         $this->quantite = $quantite;
+
+        return $this;
+    }
+
+    public function getPrix(): ?float
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(float $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

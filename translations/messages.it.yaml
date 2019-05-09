@@ -8,6 +8,10 @@ confirm password: conferma della password
 logout: disconnettersi
 ajout_restau_titre: aggiungi il tuo ristorante
 ajout_entree_titre: aggiungi la tua entrata
+ajout_plat_titre: aggiungi il tuo ..
+ajout_dessert_titre: aggiungi il tuo ..
+ajout_boisson_titre:  aggiungi la tua..
+
 restaurant:
   nom: nome del ristorante
   adresse: recapito
