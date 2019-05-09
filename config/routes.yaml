@@ -25,3 +25,4 @@ restaurant-detail:
 admin:
     path: /admin
     controller: App\Controller\AdminController::admin
+
