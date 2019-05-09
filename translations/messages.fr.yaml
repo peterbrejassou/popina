@@ -4,47 +4,45 @@ global:
   login: connexion
   logout: déconnexion
   admin: administration
+  no_account: pas de compte ?
+  contact: contact
 
 form:
   username: nom d'utilisateur
   email: adresse email
   password: mot de passe
-  confirm-password: confirmation du mot de passe
-  passwords-must-match: les mots de passe doivent correspondre
+  confirm_password: confirmation du mot de passe
+  passwords_must_match: les mots de passe doivent correspondre
+  message: message
+  send: envoyer
   save: valider
+  entree: nom de l'entrée
+  plat: nom du plat
+  dessert: nom du dessert
+  boisson: nom de la boisson
 
 titre:
-  restau: ajouter votre restaurant
+  restaurant: ajouter votre restaurant
   entree: ajouter votre entrée
   plat:  ajouter votre plat
   dessert:  ajouter votre dessert
   boisson:  ajouter votre boisson
 
 restaurant:
-  nom: Nom du restaurant
-  adresse: Adresse
-  cp: Code postal
-  ville: Ville
-  tel: Numéro de téléphone
-  email: Adresse mail
-  site_web: Site web
-  horaire: Horaires
-  type: Type de nourriture
-  photo: Vos photos
-  save: Créer
-
-entree:
-  nom: Nom de l'entrée
-plat:
-  nom: Nom du plat
-dessert:
-  nom: Nom du dessert
-boisson:
-  nom: Nom de la boisson
-  
+  nom: nom du restaurant
+  adresse: adresse
+  cp: code postal
+  ville: ville
+  tel: numéro de téléphone
+  email: adresse mail
+  site_web: site web
+  horaire: horaires
+  type: type de nourriture
+  photos: photos
+  save: créer
 
 carte:
-  description: Description
-  quantite: Quantité
-  prix: Prix
-  save: Ajouter
+  description: description
+  quantite: quantité
+  prix: prix
+  save: ajouter

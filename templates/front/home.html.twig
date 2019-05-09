@@ -1,0 +1,22 @@
+{% extends 'front/base.html.twig' %}
+
+{% block content %}
+
+<div class="home">
+    <div class="container">
+        <div class="row">
+            {% for restaurant in restaurants %}
+                <div class="col-sm card">
+                    <img class="card-img-top" src="/uploads/photos/{{ restaurant.photo }}" alt="Image restaurant">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ restaurant.nom }}</h5>
+                        <p class="card-text">{{ restaurant.adresse }}</p>
+                        <a href="{{ path('restaurant_detail', {id: restaurant.id}) }}" class="btn btn-primary">Détails</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

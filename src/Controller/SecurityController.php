@@ -7,7 +7,6 @@ use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
@@ -27,14 +26,14 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('login');
         }
 
-        return $this->render('security/registration.html.twig', [
+        return $this->render('front/security/registration.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     public function login()
     {
-        return $this->render('security/login.html.twig');
+        return $this->render('front/security/login.html.twig');
     }
 
     public function logout(){}

@@ -1,0 +1,20 @@
+{% extends 'front/base.html.twig' %}
+
+{% block content %}
+    <div class="home">
+        <h1>Detail de {{restaurant.nom}}</h1>
+        <div>
+            <img  src="/uploads/photos/{{restaurant.photo}}" />
+            <p>{{ 'restaurant.adresse'|trans }} : {{restaurant.adresse}}</p>
+            <p>{{ 'restaurant.cp'|trans }} : {{restaurant.codePostal}}</p>
+            <p>{{ 'restaurant.ville'|trans }} : {{restaurant.ville}}</p>
+            <p>{{ 'restaurant.tel'|trans }} : {{restaurant.telephone}}</p>
+            <p>{{ 'restaurant.email'|trans }} : {{restaurant.email}}</p>
+            <p>{{ 'restaurant.site_web'|trans }} : {{restaurant.siteWeb}}</p>
+            <p>{{ 'restaurant.horaires'|trans }} : {{restaurant.horaires}}</p>
+            <p>{{ 'restaurant.type'|trans }} : {{restaurant.type}}</p>
+
+            <a href="{{ path('contact', {id: restaurant.id}) }}">Contacter le restaurateur</a>
+        </div>
+    </div>
+{% endblock %}

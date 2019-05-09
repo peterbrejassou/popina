@@ -7,12 +7,11 @@ use App\Entity\Entree;
 use App\Entity\PLat;
 use App\Entity\Dessert;
 use App\Entity\Boisson;
-use App\Controller\EntityManagerInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\RestaurantType;
 use App\Form\EntreeType;
@@ -24,49 +23,45 @@ class RestaurantController extends AbstractController
 {
     public function restaurantDetail(Restaurant $restaurant)
     {
-        return $this->render('restaurant-detail.html.twig', [
+        return $this->render('front/restaurant-detail.html.twig', [
             'restaurant' => $restaurant,
         ]);
     }
 
     public function restaurantDetailAdmin(Restaurant $restaurant)
     {
-        return $this->render('restaurant-detail-admin.html.twig', [
+        return $this->render('back/restaurant-detail-admin.html.twig', [
             'restaurant' => $restaurant,
         ]);
     }
 
 
     //form ajout restaurant
-    public function addRestaurant(Request $request)
+    public function addRestaurant(Request $request, EntityManagerInterface $em)
     {
-        $form = new Restaurant();
-
-        $formulaire = $this->createForm(RestaurantType::class, $form);
-
+        $resto = new Restaurant();
+        $formulaire = $this->createForm(RestaurantType::class, $resto);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $file = $form->getPhoto();
+            $file = $resto->getPhoto();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
             $file->move($this->getParameter('photos_directory'), $fileName);
-            $form->setPhoto($fileName);
+            $resto->setPhoto($fileName);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($form);
+            $em->persist($resto);
             $em->flush();   
             
-            return $this->redirectToRoute('restaurant-detail-admin', ['id' => $form->getId()]);
+            return $this->redirectToRoute('back/restaurant-detail-admin.html.twig', ['id' => $resto->getId()]);
         }
        
-        return $this->render('form/new.html.twig', [
+        return $this->render('back/form/add-restaurant.html.twig', [
             'form' => $formulaire->createView(),
         ]);
     }
 
-
     //ajout d'une entrée
-    public function addEntree(Request $request, Restaurant $restaurant)
+    public function addEntree(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
         $entree = new Entree();
 
@@ -74,17 +69,15 @@ class RestaurantController extends AbstractController
 
         $entree_ajout->handleRequest($request);
 
-        if ($entree_ajout->isSubmitted() && $entree_ajout->isValid()) {
-
-            $em = $this->getDoctrine()->getManager();
+        if ($entree_ajout->isSubmitted() && $entree_ajout->isValid()){
             $restaurant->addEntree($entree);
             $em->persist($entree);
             $em->flush();
 
-            return $this->redirectToRoute('restaurant-detail-admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('back/restaurant-detail-admin', ['id' => $restaurant->getId()]);
         }
        
-        return $this->render('form/add-entree.html.twig', 
+        return $this->render('back/form/add-entree.html.twig',
          [
             'restaurant' => $restaurant,
             'entree' => $entree_ajout->createView(),
@@ -92,7 +85,7 @@ class RestaurantController extends AbstractController
     }
 
     // ajout d'un plat
-    public function addPlat(Request $request, Restaurant $restaurant)
+    public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
         $plat = new Plat();
 
@@ -101,14 +94,12 @@ class RestaurantController extends AbstractController
         $plat_ajout->handleRequest($request);
 
         if ($plat_ajout->isSubmitted() && $plat_ajout->isValid()) {
-            
-            $em = $this->getDoctrine()->getManager();
             $restaurant->addPLat($plat);
             $em->persist($plat);
             $em->flush();
         }
         
-        return $this->render('form/add-plat.html.twig', 
+        return $this->render('back/form/add-plat.html.twig',
         [
             'restaurant' => $restaurant,
             'plat' => $plat_ajout->createView(),
@@ -116,7 +107,7 @@ class RestaurantController extends AbstractController
     }
 
     // ajout d'un dessert
-    public function addDessert(Request $request, Restaurant $restaurant)
+    public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
         $dessert = new Dessert();
 
@@ -125,14 +116,12 @@ class RestaurantController extends AbstractController
         $dessert_ajout->handleRequest($request);
 
         if ($dessert_ajout->isSubmitted() && $dessert_ajout->isValid()) {
-            
-            $em = $this->getDoctrine()->getManager();
             $restaurant->addDessert($dessert);
             $em->persist($dessert);
             $em->flush();
         }
         
-        return $this->render('form/add-dessert.html.twig', 
+        return $this->render('back/form/add-dessert.html.twig',
         [
             'restaurant' => $restaurant,
             'dessert' => $dessert_ajout->createView(),
@@ -141,29 +130,45 @@ class RestaurantController extends AbstractController
 
 
     // ajout d'une boisson
-    public function addBoisson(Request $request, Restaurant $restaurant)
+    public function addBoisson(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
         $boisson = new Boisson();
-
         $boisson_ajout = $this->createForm(BoissonType::class, $boisson);
-
         $boisson_ajout->handleRequest($request);
 
         if ($boisson_ajout->isSubmitted() && $boisson_ajout->isValid()) {
-            
-            $em = $this->getDoctrine()->getManager();
             $restaurant->addBoisson($boisson);
             $em->persist($boisson);
             $em->flush();
         }
         
-        return $this->render('form/add-boisson.html.twig', 
+        return $this->render('back/form/add-boisson.html.twig',
         [
             'restaurant' => $restaurant,
             'boisson' => $boisson_ajout->createView(),
         ]);
     }
-   
 
+    public function contact(\Swift_Mailer $mailer, Restaurant $restaurant)
+    {
+        $contactForm = $this->createFormBuilder()
+            ->add('email', EmailType::class, ['label' => 'form.email'])
+            ->add('content', TextareaType::class, ['label' => 'form.message'])
+            ->add('save', SubmitType::class, ['label' => 'form.send'])
+            ->getForm();
+
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            $message = (new \Swift_Message('Contact depuis La Popina'))
+                ->setFrom('peter.brejassou@gmail.com')
+                ->setTo('lola.gauchet@gmail.com')
+                ->setBody($this->renderView('back/emails/mail-contact.html.twig', ['restaurant' => $restaurant]), 'text/html');
+
+            $mailer->send($message);
+        }
+
+        return $this->render('front/form/contact.html.twig', [
+            'contact' => $contactForm->createView(),
+        ]);
+    }
 
 }
