@@ -4,11 +4,40 @@ h1{
   text-align: center;
 }
 
+.uppercaseFirstLetter{
+  text-transform: capitalize;
+}
+
+#iconHeader{
+  width: 30px;
+  height: 30px;
+}
+
+.homeButtonHeader{
+  margin-left: 15px;
+}
 
 .row{
   padding: 20px 0;
 }
 
+.list-group-item{
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
 .linkFilter{
   display: block;
+}
+
+.imgRestaurant{
+  width: 150px;
+  border-radius: 10px;
+}
+
+footer{
+  text-align: center;
+  font-size: 10px;
+  //background-color: lightgrey;
+  padding: 15px 0;
 }

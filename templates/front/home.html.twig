@@ -7,20 +7,28 @@
         <div class="row">
             <div class="col-2">
                 <h5>Filtres :</h5>
-                <a class="linkFilter" href="{{ path("home_filtered", {filter:"cuisine-francaise"}) }}">Cuisine française</a>
-                <a class="linkFilter" href="{{ path("home_filtered", {filter:"asiatique" }) }}">Asiatique</a>
-                <a class="linkFilter" href="{{ path("home_filtered", {filter:"fast-food" }) }}">Fast Food</a>
+                <a class="linkFilter" id="filtre0" href="{{ path("home") }}">Tous</a>
+                <a class="linkFilter" id="filtre1" href="{{ path("home_filtered", {filter:"cuisine-francaise"}) }}">Cuisine française</a>
+                <a class="linkFilter" id="filtre2" href="{{ path("home_filtered", {filter:"asiatique" }) }}">Asiatique</a>
+                <a class="linkFilter" id="filtre3" href="{{ path("home_filtered", {filter:"fast-food" }) }}">Fast Food</a>
             </div>
             <div class="col-10">
                 <div class="list-group">
                     {% for restaurant in restaurants %}
                         <a href="{{ path("restaurant_detail", {id: restaurant.id}) }}" class="list-group-item list-group-item-action flex-column align-items-start">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{ restaurant.nom }}</h5>
-                                <small>{{ restaurant.type }}</small>
+                            <div class="row">
+                                <div class="col-3">
+                                    <img class="imgRestaurant" src="uploads/photos/{{ restaurant.photo }}" />
+                                </div>
+                                <div class="col-9">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">{{ restaurant.nom }}</h5>
+                                        <small>{{ restaurant.type }}</small>
+                                    </div>
+                                    <p class="mb-1">{{ restaurant.adresse }}</p>
+                                    <small>{{ restaurant.codePostal }} {{ restaurant.ville }}</small>
+                                </div>
                             </div>
-                            <p class="mb-1">{{ restaurant.adresse }}</p>
-                            <small>{{ restaurant.codePostal }} {{ restaurant.ville }}</small>
                         </a>
                     {% endfor %}
                 </div>
