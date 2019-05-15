@@ -2,6 +2,10 @@ home:
     path: /
     controller: App\Controller\HomeController::home
 
+home_filtered:
+    path: ?filter={filter}
+    controller: App\Controller\HomeController::homeFiltered
+
 register:
     path: /register
     controller: App\Controller\SecurityController::register
@@ -26,19 +30,19 @@ restaurant_detail_admin:
     path: /admin/restaurant/{id}
     controller: App\Controller\RestaurantController::restaurantDetailAdmin
 
-add-entree:
+add_entree:
     path: /admin/restaurant/{id}/add-entree
     controller: App\Controller\RestaurantController::addEntree
 
-add-plat:
+add_plat:
     path: /admin/restaurant/{id}/add-plat
     controller: App\Controller\RestaurantController::addPlat
 
-add-dessert:
+add_dessert:
     path: /admin/restaurant/{id}/add-dessert
     controller: App\Controller\RestaurantController::addDessert
 
-add-boisson:
+add_boisson:
     path: /admin/restaurant/{id}/add-boisson
     controller: App\Controller\RestaurantController::addBoisson
 

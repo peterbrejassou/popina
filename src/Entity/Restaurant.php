@@ -106,8 +106,37 @@ class Restaurant
      */
     private $boissons;
 
-    public function __construct()
+    /**
+     * Restaurant constructor.
+     * @param $id
+     * @param $nom
+     * @param $adresse
+     * @param $code_postal
+     * @param $ville
+     * @param $telephone
+     * @param $email
+     * @param $site_web
+     * @param $horaires
+     * @param $type
+     * @param $photo
+     * @param $entrees
+     * @param $plats
+     * @param $desserts
+     * @param $boissons
+     */
+    public function __construct($id, $nom, $adresse, $code_postal, $ville, $telephone, $email, $site_web, $horaires, $type, $photo)
     {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->adresse = $adresse;
+        $this->code_postal = $code_postal;
+        $this->ville = $ville;
+        $this->telephone = $telephone;
+        $this->email = $email;
+        $this->site_web = $site_web;
+        $this->horaires = $horaires;
+        $this->type = $type;
+        $this->photo = $photo;
         $this->entrees = new ArrayCollection();
         $this->plats = new ArrayCollection();
         $this->desserts = new ArrayCollection();

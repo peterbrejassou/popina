@@ -37,6 +37,23 @@ class Dessert
      */
     private $restaurant;
 
+    /**
+     * Dessert constructor.
+     * @param $id
+     * @param $nom
+     * @param $description
+     * @param $prix
+     * @param $restaurant
+     */
+    public function __construct($id, $nom, $description, $prix, $restaurant)
+    {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->description = $description;
+        $this->prix = $prix;
+        $this->restaurant = $restaurant;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

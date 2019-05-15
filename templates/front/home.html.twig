@@ -5,16 +5,26 @@
 <div class="home">
     <div class="container">
         <div class="row">
-            {% for restaurant in restaurants %}
-                <div class="col-sm card">
-                    <img class="card-img-top" src="/uploads/photos/{{ restaurant.photo }}" alt="Image restaurant">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ restaurant.nom }}</h5>
-                        <p class="card-text">{{ restaurant.adresse }}</p>
-                        <a href="{{ path('restaurant_detail', {id: restaurant.id}) }}" class="btn btn-primary">Détails</a>
-                    </div>
+            <div class="col-2">
+                <h5>Filtres :</h5>
+                <a class="linkFilter" href="{{ path("home_filtered", {filter:"cuisine-francaise"}) }}">Cuisine française</a>
+                <a class="linkFilter" href="{{ path("home_filtered", {filter:"asiatique" }) }}">Asiatique</a>
+                <a class="linkFilter" href="{{ path("home_filtered", {filter:"fast-food" }) }}">Fast Food</a>
+            </div>
+            <div class="col-10">
+                <div class="list-group">
+                    {% for restaurant in restaurants %}
+                        <a href="{{ path("restaurant_detail", {id: restaurant.id}) }}" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ restaurant.nom }}</h5>
+                                <small>{{ restaurant.type }}</small>
+                            </div>
+                            <p class="mb-1">{{ restaurant.adresse }}</p>
+                            <small>{{ restaurant.codePostal }} {{ restaurant.ville }}</small>
+                        </a>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         </div>
     </div>
 </div>
