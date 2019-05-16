@@ -1,14 +1,14 @@
 {% extends 'front/base.html.twig' %}
 
 {% block content %}
-    <h1>Administration</h1>
+    <h1>{{ 'global.admin'|trans }}</h1>
 
-    <h3>Liste des restaurants</h3>
+    <h3>{{ 'restaurant.liste'|trans }}</h3>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nom</th>
+                <th>{{ 'global.nom'|trans }}</th>
             </tr>
         </thead>
             <tbody>
@@ -16,12 +16,12 @@
                 <tr>
                     <td>{{ restaurant.id }}</td>
                     <td>{{ restaurant.nom }}</td>
-                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">Voir les détails</a></td>
-                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">Modifier</a></td>
+                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">{{ 'restaurant.update'|trans }}</a></td>
+                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">{{ 'restaurant.details'|trans }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
     </table>
 
-    <a href="{{ path('add_restaurant') }}">Ajouter un restaurant</a>
+    <a href="{{ path('add_restaurant') }}">{{ 'restaurant.add'|trans }}</a>
 {% endblock %}

@@ -6,23 +6,23 @@
             <div class="restaurant--left">  
                 <h1>{{restaurant.nom}}</h1>
                 <div>
-                    <h2> Votre adresse </h2>
+                    <h2> {{ 'restaurant.adresse'|trans }} </h2>
                     <p> {{restaurant.adresse}}</p>
                 </div>
                 <div>
-                    <h2> Votre code postal </h2>
+                    <h2>{{ 'restaurant.cp'|trans }} </h2>
                     <p> {{restaurant.codePostal}}</p>
                 </div>
                 <div>
-                    <h2> Votre ville </h2>
+                    <h2> {{ 'restaurant.ville'|trans }} </h2>
                     <p> {{restaurant.ville}}</p>
                 </div>
                 <div>
-                    <h2> Votre site web </h2>
+                    <h2>{{ 'restaurant.site_web'|trans }} </h2>
                     <p> {{restaurant.siteWeb}}</p>
                 </div>
                 <div>
-                    <h2> Type de restaurant </h2>
+                    <h2> {{ 'restaurant.type'|trans }} </h2>
                     <p> {{restaurant.type}}</p>
                 </div>
             </div>
@@ -38,25 +38,25 @@
         </div>
 
         <div class="plat--infos"> 
-            <h3>Entrées</h3>
+            <h3>{{ 'carte.entree'|trans }}</h3>
         {% for entree in entrees %}
             <p>{{entree.nom}}</p>
             <p>{{entree.description}}</p>
             <p>{{entree.prix}}</p>
         {% endfor %}
-        <h3>Plats</h3>
+        <h3>{{ 'carte.plat'|trans }}</h3>
         {% for plat in plats %}
             <p>{{plat.nom}}</p>
             <p>{{plat.description}}</p>
             <p>{{plat.prix}}</p>
         {% endfor %}
-        <h3>Desserts</h3>
+        <h3>{{ 'carte.dessert'|trans }}</h3>
         {% for dessert in desserts %}
             <p>{{dessert.nom}}</p>
             <p>{{dessert.description}}</p>
             <p>{{dessert.prix}}</p>
         {% endfor %}
-        <h3>Boissons</h3>
+        <h3>{{ 'carte.boisson'|trans }}</h3>
         {% for boisson in boissons %}
             <p>{{boisson.nom}}</p>
             <p>{{boisson.description}}</p>
@@ -66,10 +66,10 @@
            
         </div>
         <div class="restaurant--carte"> 
-            <a href="{{path('add_entree', {id:restaurant.id})}}"> Ajouter une entrée </a>
-            <a href="{{path('add_plat', {id:restaurant.id})}}"> Ajouter un plat </a>
-            <a href="{{path('add_dessert', {id:restaurant.id})}}"> Ajouter un dessert </a>
-            <a href="{{path('add_boisson', {id:restaurant.id})}}"> Ajouter une boisson </a>
+            <a href="{{path('add_entree', {id:restaurant.id})}}"> {{ 'carte.link_entree'|trans }} </a>
+            <a href="{{path('add_plat', {id:restaurant.id})}}"> {{ 'carte.link_plat'|trans }}  </a>
+            <a href="{{path('add_dessert', {id:restaurant.id})}}">{{ 'carte.link_dessert'|trans }}  </a>
+            <a href="{{path('add_boisson', {id:restaurant.id})}}"> {{ 'carte.link_boisson'|trans }}  </a>
         </div>
     </div>
 

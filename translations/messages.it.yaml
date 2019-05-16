@@ -12,7 +12,16 @@ ajout_plat_titre: aggiungi il tuo ..
 ajout_dessert_titre: aggiungi il tuo ..
 ajout_boisson_titre:  aggiungi la tua..
 
+
+global:
+  admin: amministrazione
+  nom: nome
+  filtre: filtro
+  restaurant_detail: dettaglio di
+  contact: contattare il conservatore
+
 restaurant:
+  liste: lista dei ristoranti
   nom: nome del ristorante
   adresse: recapito
   cp: contea
@@ -22,8 +31,13 @@ restaurant:
   site_web: sito web
   horaire: prospetti
   type: tipo di alimento
-  photo: foto
+  photos: foto
   save: creare
+  add: aggiungere un ristorante
+  update: modifica
+  details: vedi il dettaglio
+  detail: dettaglio
+  contact: contattare il conservatore
 
 contact:
   name: vostre nome
@@ -32,3 +46,25 @@ contact:
   email:  indirizzo e-mail
   message: vostre messagio
   save: inviare
+
+titre:
+  restaurant: aggiungere un ristorante
+  entree: aggiungere una entrata
+  plat:  aggiungere un piatto
+  dessert:  aggiungere un dolce
+  boisson:  aggiungere una bevenda
+
+carte:
+  nom: nome
+  description: descrizione
+  quantite: quantità
+  prix: costo
+  save: creare
+  entree: entrata
+  plat: piatto
+  dessert: dolce
+  boisson: bevenda
+  link_entree: aggiungere una entrata
+  link_plat:  aggiungere un piatto
+  link_dessert: ajouter un dolce
+  link_boisson: ajouter una bevenda

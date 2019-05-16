@@ -12,7 +12,7 @@ class BoissonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class,['label' => 'form.boisson'])
+            ->add('nom', TextType::class,['label' => 'carte.nom'])
             ->add('description', TextType::class,['label' => 'carte.description'])
             ->add('quantite', NumberType::class,['label' => 'carte.quantite'])
             ->add('prix', NumberType::class,['label' => 'carte.prix'])

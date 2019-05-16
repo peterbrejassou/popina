@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
+use Psr\Log\LoggerInterface;
 use App\Form\RestaurantType;
 use App\Form\EntreeType;
 use App\Form\PlatType;
@@ -55,8 +56,11 @@ class RestaurantController extends AbstractController
 
 
     //form ajout restaurant
-    public function addRestaurant(Request $request, EntityManagerInterface $em)
+    public function addRestaurant(Request $request, EntityManagerInterface $em, LoggerInterface $logger)
     {
+
+        $logger->info('Un restaurant a été ajouté');
+        
         $resto = new Restaurant(null, null, null, null, null, null, null, null, null, null, null);
         $formulaire = $this->createForm(RestaurantType::class, $resto);
         $formulaire->handleRequest($request);
@@ -69,6 +73,7 @@ class RestaurantController extends AbstractController
 
             $em->persist($resto);
             $em->flush();   
+            
             
             return $this->redirectToRoute('restaurant_detail_admin', ['id' => $resto->getId()]);
         }
