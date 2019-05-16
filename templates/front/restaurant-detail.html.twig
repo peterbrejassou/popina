@@ -2,49 +2,92 @@
 
 {% block content %}
     <div class="home">
-        <h1>{{ 'global.restaurant_detail'|trans }} {{restaurant.nom}}</h1>
-        <div>
-            <img  src="/uploads/photos/{{restaurant.photo}}" />
-            <p>{{ 'restaurant.adresse'|trans }} : {{restaurant.adresse}}</p>
-            <p>{{ 'restaurant.cp'|trans }} : {{restaurant.codePostal}}</p>
-            <p>{{ 'restaurant.ville'|trans }} : {{restaurant.ville}}</p>
-            <p>{{ 'restaurant.tel'|trans }} : {{restaurant.telephone}}</p>
-            <p>{{ 'restaurant.email'|trans }} : {{restaurant.email}}</p>
-            <p>{{ 'restaurant.site_web'|trans }} : {{restaurant.siteWeb}}</p>
-            <p>{{ 'restaurant.horaires'|trans }} : {{restaurant.horaires}}</p>
-            <p>{{ 'restaurant.type'|trans }} : {{restaurant.type}}</p>
-        </div>
+        <div class="restaurant--detail">
+            <div class="restaurant--infos"> 
+                <div class="restaurant--left">  
+                    <h1>{{restaurant.nom}}</h1>
+                    <div>
+                        <h2 class="title"> {{ 'restaurant.adresse'|trans }} </h2>
+                        <p> {{restaurant.adresse}}</p>
+                    </div>
+                    <div>
+                        <h2 class="title">{{ 'restaurant.cp'|trans }} </h2>
+                        <p> {{restaurant.codePostal}}</p>
+                    </div>
+                    <div>
+                        <h2 class="title"> {{ 'restaurant.ville'|trans }} </h2>
+                        <p> {{restaurant.ville}}</p>
+                    </div>
+                    <div>
+                        <h2 class="title">{{ 'restaurant.site_web'|trans }} </h2>
+                    <a href="{{restaurant.siteWeb}}" target="_blank"> <p> {{restaurant.siteWeb}}</p></a>
+                    </div>
+                    <div>
+                        <h2 class="title"> {{ 'restaurant.type'|trans }} </h2>
+                        <p> {{restaurant.type}}</p>
+                    </div>
+                </div>
+                <div class="restaurant--right"> 
+                    <div class="restaurant--img"><img  src="/uploads/photos/{{restaurant.photo}}" />   </div>
+                    
+                    <div class="restaurant--adresse">
+                        <p> {{restaurant.telephone}}</p>
+                        <a href="{{restaurant.email}}"> <p>{{restaurant.email}}</p></a>
+                        <p> {{restaurant.horaires}}</p>
+                    </div>
+                </div>
+            </div>
+
 
         <div class="plat--infos"> 
-            <h3>{{ 'carte.entree'|trans }}</h3>
-            {% for entree in entrees %}
-                <p>{{entree.nom}}</p>
-                <p>{{entree.description}}</p>
-                <p>{{entree.prix}}</p>
-            {% endfor %}
-            <h3>{{ 'carte.plat'|trans }}</h3>
-            {% for plat in plats %}
-                <p>{{plat.nom}}</p>
-                <p>{{plat.description}}</p>
-                <p>{{plat.prix}}</p>
-            {% endfor %}
-            <h3>{{ 'carte.dessert'|trans }}</h3>
-            {% for dessert in desserts %}
-                <p>{{dessert.nom}}</p>
-                <p>{{dessert.description}}</p>
-                <p>{{dessert.prix}}</p>
-            {% endfor %}
-            <h3>{{ 'carte.boisson'|trans }}</h3>
-            {% for boisson in boissons %}
-                <p>{{boisson.nom}}</p>
-                <p>{{boisson.description}}</p>
-                <p>{{boisson.prix}}</p>
-                <p>{{boisson.quantite}} cl</p>
-            {% endfor %}
+          
+            <div class="carte"> 
+                <div class="entree"> 
+                    <h3 class="title">{{ 'carte.entree'|trans }}</h3>
+                    {% for entree in entrees %}
+                        <div class="carte--item"> 
+                            <p>{{entree.nom}}</p>
+                            <p>{{entree.description}}</p>
+                            <p>{{entree.prix|prix}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="plat"> 
+                    <h3 class="title">{{ 'carte.plat'|trans }}</h3>
+                    {% for plat in plats %}
+                        <div class="carte--item">
+                            <p>{{plat.nom}}</p>
+                            <p>{{plat.description}}</p>
+                            <p>{{plat.prix|prix}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="dessert"> 
+                    <h3 class="title">{{ 'carte.dessert'|trans }}</h3>
+                    {% for dessert in desserts %}
+                        <div class="carte--item">
+                            <p>{{dessert.nom}}</p>
+                            <p>{{dessert.description}}</p>
+                            <p>{{dessert.prix|prix}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="boisson"> 
+                    <h3 class="title">{{ 'carte.boisson'|trans }}</h3>
+                    {% for boisson in boissons %}
+                        <div class="carte--item">
+                        <p>{{boisson.nom}}</p>
+                        <p>{{boisson.description}}</p>
+                        <p>{{boisson.prix|prix}}</p>
+                        <p>{{boisson.quantite}} cl</p>
+                    </div>
+                    {% endfor %}           
+                </div>
+            </div>
             
+            <a href="{{ path('contact', {id: restaurant.id}) }}" class="btn">{{ 'restaurant.contact'|trans }}</a>
         </div>
 
-        <a href="{{ path('contact', {id: restaurant.id}) }}">{{ 'restaurant.contact'|trans }}</a>
     </div>
    
 {% endblock %}

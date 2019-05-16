@@ -61,7 +61,9 @@ class RestaurantController extends AbstractController
     {
 
         $logger->info('Un restaurant a été ajouté');
-        
+
+        $restaurant = new Restaurant(null, null, null, null, null, null, null, null, null, null, null);
+        $formulaire = $this->createForm(RestaurantType::class, $restaurant);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
