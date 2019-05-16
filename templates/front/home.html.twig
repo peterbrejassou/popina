@@ -9,10 +9,10 @@
         <div class="row">
             <div class="col-2">
                 <h5>{{ 'global.filtre'|trans }}</h5>
-                <a class="linkFilter" id="filtre0" href="{{ path("home") }}">Tous</a>
-                <a class="linkFilter" id="filtre1" href="{{ path("home_filtered", {filter:"cuisine-francaise"}) }}">Cuisine française</a>
-                <a class="linkFilter" id="filtre2" href="{{ path("home_filtered", {filter:"asiatique" }) }}">Asiatique</a>
-                <a class="linkFilter" id="filtre3" href="{{ path("home_filtered", {filter:"fast-food" }) }}">Fast Food</a>
+                <a class="linkFilter" href="{{ path("home") }}">Tous</a>
+                {% for filter in filtres %}
+                    <a class="linkFilter" href="{{ path("home_filtered", {filter: filter.slug}) }}">{{ filter.nom }}</a>
+                {% endfor %}
             </div>
             <div class="col-10">
                 <div class="list-group card--container">

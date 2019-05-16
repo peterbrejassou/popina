@@ -60,7 +60,7 @@ class Restaurant
     private $horaires;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeRestaurant", inversedBy="restaurants", cascade={"persist", "remove"})
      */
     private $type;
 
@@ -102,10 +102,6 @@ class Restaurant
      * @param $horaires
      * @param $type
      * @param $photo
-     * @param $entrees
-     * @param $plats
-     * @param $desserts
-     * @param $boissons
      */
     public function __construct($id, $nom, $adresse, $code_postal, $ville, $telephone, $email, $site_web, $horaires, $type, $photo)
     {
@@ -227,16 +223,20 @@ class Restaurant
         return $this;
     }
 
-    public function getType(): ?string
+    /**
+     * @return mixed
+     */
+    public function getType()
     {
         return $this->type;
     }
 
-    public function setType(string $type): self
+    /**
+     * @param mixed $type
+     */
+    public function setType($type): void
     {
         $this->type = $type;
-
-        return $this;
     }
 
     public function getPhoto()

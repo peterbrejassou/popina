@@ -2,6 +2,8 @@
 
 namespace App\Form;
 use App\Entity\Restaurant;
+use App\Entity\TypeRestaurant;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -41,7 +43,10 @@ class RestaurantType extends AbstractType
             ))
             ->add('site_web', TextType::class, ['label' => 'restaurant.site_web'])
             ->add('horaires', TextType::class, ['label' => 'restaurant.horaire'])
-            ->add('type', TextType::class, ['label' => 'restaurant.type'])
+            ->add('type', EntityType::class, [
+                'class' => TypeRestaurant::class,
+                'choice_label' => 'nom',
+            ])
             ->add('photo', FileType::class, array(
                 'constraints' => array(
                     new File(array('maxSize' => '5M','mimeTypes' => [
