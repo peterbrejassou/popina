@@ -21,44 +21,31 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="string", length=5)
-     * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $code_postal;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $ville;
 
      /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $telephone;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Type("string")
-     * @Assert\Email
      */
     private $email;
 
@@ -69,15 +56,11 @@ class Restaurant
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $horaires;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     * @Assert\Type("string")
      */
     private $type;
 

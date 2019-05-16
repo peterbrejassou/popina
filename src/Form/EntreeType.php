@@ -14,7 +14,7 @@ class EntreeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class,['label' => 'form.entree'])
+            ->add('nom', TextType::class,['label' => 'carte.nom'])
             ->add('description', TextType::class,['label' => 'carte.description'])
             ->add('prix', NumberType::class,['label' => 'carte.prix'])
             ->add('save', SubmitType::class, ['label' => 'carte.save']);

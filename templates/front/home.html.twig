@@ -8,7 +8,7 @@
             
         <div class="row">
             <div class="col-2">
-                <h5>Filtres :</h5>
+                <h5>{{ 'global.filtre'|trans }}</h5>
                 <a class="linkFilter" id="filtre0" href="{{ path("home") }}">Tous</a>
                 <a class="linkFilter" id="filtre1" href="{{ path("home_filtered", {filter:"cuisine-francaise"}) }}">Cuisine française</a>
                 <a class="linkFilter" id="filtre2" href="{{ path("home_filtered", {filter:"asiatique" }) }}">Asiatique</a>
@@ -26,7 +26,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ restaurant.nom }}</h5>
                                     <p class="card-text">{{ restaurant.adresse }}</p>
-                                    <a href="{{ path('restaurant_detail', {id: restaurant.id}) }}" class="btn">Détails</a>
+                                    <a href="{{ path('restaurant_detail', {id: restaurant.id}) }}" class="btn">{{ 'restaurant.detail'|trans }}</a>
                                 </div>
                             </div>
                     {% endfor %}
