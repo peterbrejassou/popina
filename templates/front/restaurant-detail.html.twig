@@ -13,8 +13,38 @@
             <p>{{ 'restaurant.site_web'|trans }} : {{restaurant.siteWeb}}</p>
             <p>{{ 'restaurant.horaires'|trans }} : {{restaurant.horaires}}</p>
             <p>{{ 'restaurant.type'|trans }} : {{restaurant.type}}</p>
-
-            <a href="{{ path('contact', {id: restaurant.id}) }}">Contacter le restaurateur</a>
         </div>
+
+        <div class="plat--infos"> 
+            <h3>Entrées</h3>
+            {% for entree in entrees %}
+                <p>{{entree.nom}}</p>
+                <p>{{entree.description}}</p>
+                <p>{{entree.prix}}</p>
+            {% endfor %}
+            <h3>Plats</h3>
+            {% for plat in plats %}
+                <p>{{plat.nom}}</p>
+                <p>{{plat.description}}</p>
+                <p>{{plat.prix}}</p>
+            {% endfor %}
+            <h3>Desserts</h3>
+            {% for dessert in desserts %}
+                <p>{{dessert.nom}}</p>
+                <p>{{dessert.description}}</p>
+                <p>{{dessert.prix}}</p>
+            {% endfor %}
+            <h3>Boissons</h3>
+            {% for boisson in boissons %}
+                <p>{{boisson.nom}}</p>
+                <p>{{boisson.description}}</p>
+                <p>{{boisson.prix}}</p>
+                <p>{{boisson.quantite}} cl</p>
+            {% endfor %}
+            
+        </div>
+
+        <a href="{{ path('contact', {id: restaurant.id}) }}">Contacter le restaurateur</a>
     </div>
+   
 {% endblock %}

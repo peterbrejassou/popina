@@ -5,7 +5,7 @@ global:
   logout: déconnexion
   admin: administration
   no_account: pas de compte ?
-  contact: contact
+  contact: contactez le restaurateur
 
 form:
   username: nom d'utilisateur
@@ -20,6 +20,14 @@ form:
   plat: nom du plat
   dessert: nom du dessert
   boisson: nom de la boisson
+
+contact:
+  name: votre prénom
+  lastname: votre nom
+  tel: numéro de téléphone
+  email: votre adresse mail
+  message: votre message
+  save: envoyer
 
 titre:
   restaurant: ajouter votre restaurant

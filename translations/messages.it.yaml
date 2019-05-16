@@ -24,3 +24,11 @@ restaurant:
   type: tipo di alimento
   photo: foto
   save: creare
+
+contact:
+  name: vostre nome
+  lastname: vostre cognome
+  tel:  numero di telefono
+  email:  indirizzo e-mail
+  message: vostre messagio
+  save: inviare

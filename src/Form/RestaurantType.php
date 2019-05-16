@@ -45,6 +45,7 @@ class RestaurantType extends AbstractType
                     new File(array('maxSize' => '5M','mimeTypes' => [
                         'image/png',
                         'image/jpeg',
+                        'image/jpg',
                     ], 'mimeTypesMessage' => 'Votre image doit être au format jpeg ou png'))
                 ), 'label' => 'restaurant.photos'
             ))

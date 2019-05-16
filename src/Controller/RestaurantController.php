@@ -7,6 +7,7 @@ use App\Entity\Entree;
 use App\Entity\PLat;
 use App\Entity\Dessert;
 use App\Entity\Boisson;
+use App\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -18,13 +19,22 @@ use App\Form\EntreeType;
 use App\Form\PlatType;
 use App\Form\DessertType;
 use App\Form\BoissonType;
+use App\Form\ContactType;
 
 class RestaurantController extends AbstractController
 {
-    public function restaurantDetail(Restaurant $restaurant)
+    public function restaurantDetail(Restaurant $restaurant,  EntityManagerInterface $em)
     {
+        $entrees = $em->getRepository(Entree::class)->findBy(array("restaurant" => $restaurant->getId()));
+        $plats = $em->getRepository(Plat::class)->findBy(array("restaurant" => $restaurant->getId()));
+        $desserts = $em->getRepository(Dessert::class)->findBy(array("restaurant" => $restaurant->getId()));
+        $boissons = $em->getRepository(Boisson::class)->findBy(array("restaurant" => $restaurant->getId()));
         return $this->render('front/restaurant-detail.html.twig', [
             'restaurant' => $restaurant,
+            'entrees' => $entrees,
+            'plats' => $plats,
+            'desserts' => $desserts,
+            'boissons' => $boissons,
         ]);
     }
 
@@ -101,6 +111,8 @@ class RestaurantController extends AbstractController
             $restaurant->addPLat($plat);
             $em->persist($plat);
             $em->flush();
+
+            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
         }
         
         return $this->render('back/form/add-plat.html.twig',
@@ -121,6 +133,8 @@ class RestaurantController extends AbstractController
             $restaurant->addDessert($dessert);
             $em->persist($dessert);
             $em->flush();
+
+            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
         }
         
         return $this->render('back/form/add-dessert.html.twig',
@@ -142,6 +156,8 @@ class RestaurantController extends AbstractController
             $restaurant->addBoisson($boisson);
             $em->persist($boisson);
             $em->flush();
+
+            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
         }
         
         return $this->render('back/form/add-boisson.html.twig',
@@ -151,25 +167,47 @@ class RestaurantController extends AbstractController
         ]);
     }
 
-    public function contact(\Swift_Mailer $mailer, Restaurant $restaurant)
+    public function contact(Request $request, \Swift_Mailer $mailer, Restaurant $restaurant, EntityManagerInterface $em)
     {
-        $contactForm = $this->createFormBuilder()
-            ->add('email', EmailType::class, ['label' => 'form.email'])
-            ->add('content', TextareaType::class, ['label' => 'form.message'])
-            ->add('save', SubmitType::class, ['label' => 'form.send'])
-            ->getForm();
 
-        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            $message = (new \Swift_Message('Contact depuis La Popina'))
+        $contact = new Contact();
+        $contact_form =  $this->createForm(ContactType::class, $contact);
+        $contact_form->handleRequest($request);
+
+        if ($contact_form->isSubmitted() && $contact_form->isValid()) {
+
+            $mail = $contact_form['mail']->getData();
+            $content = $contact_form['message']->getData();
+            $name = $contact_form['name']->getData();
+            $lastname = $contact_form['lastname']->getData();
+            $phone = $contact_form['phone']->getData();
+
+            $contact->setMail($mail);
+            $contact->setMessage($content);          
+
+            $em->persist($contact);
+            $em->flush();   
+            
+
+            $message = (new \Swift_Message('Confirmation Demande de contact depuis La Popina'))
                 ->setFrom('peter.brejassou@gmail.com')
-                ->setTo('lola.gauchet@gmail.com')
-                ->setBody($this->renderView('back/emails/mail-contact.html.twig', ['restaurant' => $restaurant]), 'text/html');
+                ->setTo($mail)
+                ->setBody($this->renderView('back/emails/confirmation-contact-mail.html.twig', ['mail' => $mail, 'nom' => $restaurant->getNom(), 'phone' => $restaurant->getTelephone()]), 'text/html');
 
             $mailer->send($message);
+
+            $message_resto = (new \Swift_Message('Demande de contact depuis La Popina'))
+                ->setFrom('peter.brejassou@gmail.com')
+                ->setTo($restaurant->getEmail())
+                ->setBody($this->renderView('back/emails/contact-mail.html.twig', ['name' => $name, 'lastname' => $lastname, 'phone' => $phone, 'content' => $content, 'mail' => $mail]), 'text/html');
+
+            $mailer->send($message_resto);
+
+            return $this->redirectToRoute('restaurant_detail', ['id' => $restaurant->getId()]);
         }
 
         return $this->render('front/form/contact.html.twig', [
-            'contact' => $contactForm->createView(),
+            'contact' => $contact_form->createView(),
         ]);
     }
 
