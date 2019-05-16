@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Form;
+use App\Entity\Restaurant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -8,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\File;
@@ -29,7 +31,7 @@ class RestaurantType extends AbstractType
             ->add('telephone', TelType::class, array(
                 'constraints' => array(
                     new Length(array('max' => 12)),
-                    new Regex(array( 'pattern' => '#^(0|(\+33))[0-9]{9}#', 'message' => 'Veuillez saisir un numéro de téléphone suivant ce format : +33XXXXXXXXX ou 0XXXXXXXXX'))
+                    new Regex(array( 'pattern' => '#^(0|(\+33))[1-9]{1}[0-9]{8}#', 'message' => 'validations.telephone'))
                 ), 'label' => 'restaurant.tel'
             ))
             ->add('email', EmailType::class, array(
@@ -48,7 +50,13 @@ class RestaurantType extends AbstractType
                     ], 'mimeTypesMessage' => 'Votre image doit être au format jpeg ou png'))
                 ), 'label' => 'restaurant.photos'
             ))
-            ->add('save', SubmitType::class, ['label' => 'restaurant.save'])
-        ;
+            ->add('save', SubmitType::class, ['label' => 'restaurant.save']);
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Restaurant::class,
+        ]);
     }
 }

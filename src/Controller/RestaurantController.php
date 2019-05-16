@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Restaurant;
 use App\Entity\Entree;
-use App\Entity\PLat;
+use App\Entity\Plat;
 use App\Entity\Dessert;
 use App\Entity\Boisson;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\RestaurantType;
 use App\Form\EntreeType;
@@ -47,20 +48,23 @@ class RestaurantController extends AbstractController
     //form ajout restaurant
     public function addRestaurant(Request $request, EntityManagerInterface $em)
     {
-        $resto = new Restaurant(null, null, null, null, null, null, null, null, null, null, null);
-        $formulaire = $this->createForm(RestaurantType::class, $resto);
+        $restaurant = new Restaurant(null, null, null, null, null, null, null, null, null, null, null);
+        $formulaire = $this->createForm(RestaurantType::class, $restaurant);
         $formulaire->handleRequest($request);
 
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
-            $file = $resto->getPhoto();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move($this->getParameter('photos_directory'), $fileName);
-            $resto->setPhoto($fileName);
+            $file = $restaurant->getPhoto();
 
-            $em->persist($resto);
+            if($file){
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('photos_directory'), $fileName);
+                $restaurant->setPhoto($fileName);
+            }
+
+            $em->persist($restaurant);
             $em->flush();   
             
-            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $resto->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
         }
        
         return $this->render('back/form/add-restaurant.html.twig', [
@@ -143,7 +147,7 @@ class RestaurantController extends AbstractController
             $em->persist($boisson);
             $em->flush();
         }
-        
+
         return $this->render('back/form/add-boisson.html.twig',
         [
             'restaurant' => $restaurant,
@@ -163,7 +167,7 @@ class RestaurantController extends AbstractController
             $message = (new \Swift_Message('Contact depuis La Popina'))
                 ->setFrom('peter.brejassou@gmail.com')
                 ->setTo('lola.gauchet@gmail.com')
-                ->setBody($this->renderView('back/emails/mail-contact.html.twig', ['restaurant' => $restaurant]), 'text/html');
+                ->setBody($this->renderView('back/emails/mail-contact.html.Twig', ['restaurant' => $restaurant]), 'text/html');
 
             $mailer->send($message);
         }
@@ -173,4 +177,80 @@ class RestaurantController extends AbstractController
         ]);
     }
 
+    // Suppression d'un restaurant
+    public function removeRestaurant(EntityManagerInterface $em, Restaurant $restaurant)
+    {
+        $em->remove($restaurant);
+        $em->flush();
+        return $this->redirectToRoute('admin');
+    }
+
+    // Suppression d'une entrée
+    public function removeEntree(EntityManagerInterface $em, $id_restaurant, Entree $entree)
+    {
+        $em->remove($entree);
+        $em->flush();
+
+        return $this->redirectToRoute('restaurant_detail_admin', [
+            'id' => $id_restaurant
+        ]);
+    }
+
+    // Suppression d'un plat
+    public function removePlat(EntityManagerInterface $em, $id_restaurant, Plat $plat)
+    {
+        $em->remove($plat);
+        $em->flush();
+
+        return $this->redirectToRoute('restaurant_detail_admin', [
+            'id' => $id_restaurant
+        ]);
+    }
+
+    // Suppression d'un dessert
+    public function removeDessert(EntityManagerInterface $em, $id_restaurant, Dessert $dessert)
+    {
+        $em->remove($dessert);
+        $em->flush();
+
+        return $this->redirectToRoute('restaurant_detail_admin', [
+            'id' => $id_restaurant
+        ]);
+    }
+
+    // Suppression d'une boisson
+    public function removeBoisson(EntityManagerInterface $em, $id_restaurant, Boisson $boisson)
+    {
+        $em->remove($boisson);
+        $em->flush();
+
+        return $this->redirectToRoute('restaurant_detail_admin', [
+            'id' => $id_restaurant
+        ]);
+    }
+
+    // Mise à jour d'un restaurant
+    public function updateRestaurant(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
+    {
+        $photo = new File($this->getParameter('photos_directory') . '/'. $restaurant->getPhoto());
+        $restaurant->setPhoto($photo);
+        $restaurant_update = $this->createForm(RestaurantType::class, $restaurant);
+        $restaurant_update->handleRequest($request);
+
+        if ($restaurant_update->isSubmitted() && $restaurant_update->isValid()) {
+            $file = $restaurant->getPhoto();
+
+            if($file){
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('photos_directory'), $fileName);
+                $restaurant->setPhoto($fileName);
+            }
+
+            $em->flush();
+        }
+
+        return $this->render('back/form/update-restaurant.html.twig', [
+            'update_restaurant' => $restaurant_update->createView(),
+        ]);
+    }
 }

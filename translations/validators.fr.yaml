@@ -1,0 +1,2 @@
+validations:
+  telephone: "Veuillez saisir un numéro de téléphone suivant ce format : +33xxxxxxxx ou 0xxxxxxxxx"

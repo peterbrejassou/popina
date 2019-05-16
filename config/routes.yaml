@@ -3,7 +3,7 @@ home:
     controller: App\Controller\HomeController::home
 
 home_filtered:
-    path: ?filter={filter}
+    path: /filter={filter}
     controller: App\Controller\HomeController::homeFiltered
 
 register:
@@ -54,3 +54,26 @@ contact:
     path: /restaurant/{id}/contact
     controller: App\Controller\RestaurantController::contact
 
+update_restaurant:
+    path: /admin/restaurant/{id}/update
+    controller: App\Controller\RestaurantController::updateRestaurant
+
+remove_restaurant:
+    path: /admin/restaurant/{id}/remove
+    controller: App\Controller\RestaurantController::removeRestaurant
+
+remove_entree:
+    path: /admin/restaurant/{id_restaurant}/entree/{id}/remove
+    controller: App\Controller\RestaurantController::removeEntree
+
+remove_plat:
+    path: /admin/restaurant/{id_restaurant}/plat/{id}/remove
+    controller: App\Controller\RestaurantController::removePlat
+
+remove_dessert:
+    path: /admin/restaurant/{id_restaurant}/dessert/{id}/remove
+    controller: App\Controller\RestaurantController::removeDessert
+
+remove_boisson:
+    path: /admin/restaurant/{id_restaurant}/boisson/{id}/remove
+    controller: App\Controller\RestaurantController::removeBoisson

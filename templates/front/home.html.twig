@@ -1,4 +1,4 @@
-{% extends 'front/base.html.twig' %}
+{% extends 'front/base.html.Twig' %}
 
 {% block content %}
 
@@ -18,7 +18,10 @@
                 <div class="list-group card--container">
                     {% for restaurant in restaurants %}
                             <div class="card card--item">
-                                <div class="card-img-top card--img"><img  src="/uploads/photos/{{ restaurant.photo }}" alt="Image restaurant"><p class="card--type">{{restaurant.type}}</p> </div>
+                                <div class="card-img-top card--img">
+                                    <img  src="/uploads/photos/{{ restaurant.photo }}" alt="Image restaurant">
+                                    <p class="card--type">{{ restaurant.type|replace({'-': " "}) }}</p>
+                                </div>
                                 
                                 <div class="card-body">
                                     <h5 class="card-title">{{ restaurant.nom }}</h5>

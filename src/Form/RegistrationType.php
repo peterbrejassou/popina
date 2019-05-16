@@ -26,8 +26,7 @@ class RegistrationType extends AbstractType
                 'first_options'  => ['label' => 'form.password'],
                 'second_options' => ['label' => 'form.confirm_password']
             ])
-            ->add('save', SubmitType::class, ['label' => 'form.save'])
-        ;
+            ->add('save', SubmitType::class, ['label' => 'form.save']);
     }
 
     public function configureOptions(OptionsResolver $resolver)

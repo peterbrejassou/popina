@@ -1,4 +1,4 @@
-{% extends 'front/base.html.twig' %}
+{% extends 'front/base.html.Twig' %}
 
 {% block content %}
     <h1>Administration</h1>
@@ -17,7 +17,8 @@
                     <td>{{ restaurant.id }}</td>
                     <td>{{ restaurant.nom }}</td>
                     <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">Voir les détails</a></td>
-                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">Modifier</a></td>
+                    <td><a href="{{ path('update_restaurant', {id: restaurant.id}) }}">Modifier</a></td>
+                    <td><a href="{{ path('remove_restaurant', {id: restaurant.id}) }}">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>

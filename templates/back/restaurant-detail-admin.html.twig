@@ -1,4 +1,4 @@
-{% extends 'front/base.html.twig' %}
+{% extends 'front/base.html.Twig' %}
 
 {% block content %}
     <div class="restaurant--detail">
@@ -29,7 +29,7 @@
             <div class="restaurant--right"> 
                 <div class="restaurant--img"><img  src="/uploads/photos/{{restaurant.photo}}" />   </div>
                 
-                <div class="restaurant--adresse"> 
+                <div class="restaurant--adresse">
                     <p> {{restaurant.telephone}}</p>
                     <p> {{restaurant.email}}</p>
                     <p> {{restaurant.horaires}}</p>
@@ -42,19 +42,22 @@
         {% for entree in entrees %}
             <p>{{entree.nom}}</p>
             <p>{{entree.description}}</p>
-            <p>{{entree.prix}}</p>
+            <p>{{entree.prix|prix}}</p>
+            <a href="{{ path('remove_entree', {id_restaurant: restaurant.id, id: entree.id}) }}">Supprimer</a>
         {% endfor %}
         <h3>Plats</h3>
         {% for plat in plats %}
             <p>{{plat.nom}}</p>
             <p>{{plat.description}}</p>
             <p>{{plat.prix}}</p>
+            <a href="{{ path('remove_plat', {id_restaurant: restaurant.id, id: plat.id}) }}">Supprimer</a>
         {% endfor %}
         <h3>Desserts</h3>
         {% for dessert in desserts %}
             <p>{{dessert.nom}}</p>
             <p>{{dessert.description}}</p>
             <p>{{dessert.prix}}</p>
+            <a href="{{ path('remove_dessert', {id_restaurant: restaurant.id, id: dessert.id}) }}">Supprimer</a>
         {% endfor %}
         <h3>Boissons</h3>
         {% for boisson in boissons %}
@@ -62,6 +65,7 @@
             <p>{{boisson.description}}</p>
             <p>{{boisson.prix}}</p>
             <p>{{boisson.quantite}} cl</p>
+            <a href="{{ path('remove_boisson', {id_restaurant: restaurant.id, id: boisson.id}) }}">Supprimer</a>
         {% endfor %}
            
         </div>
