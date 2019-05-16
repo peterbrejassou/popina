@@ -42,6 +42,25 @@ class Boisson
      */
     private $restaurant;
 
+    /**
+     * Boisson constructor.
+     * @param $id
+     * @param $nom
+     * @param $description
+     * @param $quantite
+     * @param $prix
+     * @param $restaurant
+     */
+    public function __construct($id, $nom, $description, $quantite, $prix, $restaurant)
+    {
+        $this->id = $id;
+        $this->nom = $nom;
+        $this->description = $description;
+        $this->quantite = $quantite;
+        $this->prix = $prix;
+        $this->restaurant = $restaurant;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

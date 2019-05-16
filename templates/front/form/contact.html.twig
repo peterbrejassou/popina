@@ -1,8 +1,8 @@
 {% extends 'front/base.html.twig' %}
 
 {% block content %}
-    <h1>{{ 'global.contact'|trans }}</h1>
-    {{ form_start(contact) }}
-    {{ form_widget(contact) }}
-    {{ form_end(contact) }}
+    <h1 class="uppercaseFirstLetter">{{ 'global.contact'|trans }}</h1>
+    {{ form_start(contact, {'attr':{'class': 'uppercaseFirstLetter'}}) }}
+    {{ form_widget(contact, {'attr':{'class': 'uppercaseFirstLetter'}}) }}
+    {{ form_end(contact, {'attr':{'class': 'uppercaseFirstLetter'}}) }}
 {% endblock %}

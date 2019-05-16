@@ -66,9 +66,7 @@ class RestaurantController extends AbstractController
     public function addEntree(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
         $entree = new Entree();
-
         $entree_ajout = $this->createForm(EntreeType::class, $entree);
-
         $entree_ajout->handleRequest($request);
 
         if ($entree_ajout->isSubmitted() && $entree_ajout->isValid()){
@@ -90,9 +88,7 @@ class RestaurantController extends AbstractController
     public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
         $plat = new Plat();
-
         $plat_ajout = $this->createForm(PlatType::class, $plat);
-
         $plat_ajout->handleRequest($request);
 
         if ($plat_ajout->isSubmitted() && $plat_ajout->isValid()) {
@@ -112,9 +108,7 @@ class RestaurantController extends AbstractController
     public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
         $dessert = new Dessert();
-
         $dessert_ajout = $this->createForm(DessertType::class, $dessert);
-
         $dessert_ajout->handleRequest($request);
 
         if ($dessert_ajout->isSubmitted() && $dessert_ajout->isValid()) {

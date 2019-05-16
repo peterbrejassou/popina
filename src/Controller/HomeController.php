@@ -15,4 +15,12 @@ class HomeController extends AbstractController
             'restaurants' => $restaurants
         ]);
     }
+
+    public function homeFiltered(EntityManagerInterface $em, $filter)
+    {
+        $restaurants = $em->getRepository(Restaurant::class)->findBy(array('type' => $filter));
+        return $this->render('/front/home.html.twig', [
+            'restaurants' => $restaurants
+        ]);
+    }
 }
