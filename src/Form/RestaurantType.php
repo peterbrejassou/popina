@@ -32,8 +32,8 @@ class RestaurantType extends AbstractType
             ->add('ville', TextType::class, ['label' => 'restaurant.ville'])
             ->add('telephone', TelType::class, array(
                 'constraints' => array(
-                    new Length(array('max' => 12)),
-                    new Regex(array( 'pattern' => '#^(0|(\+33))[1-9]{1}[0-9]{8}#', 'message' => 'validations.telephone'))
+                    new Length(array('min' => 10, 'max' => 18)),
+                    new Regex(array( 'pattern' => '#^(0|(\+33))[1-9]{1} ?[0-9 ]{8}#', 'message' => 'validations.telephone'))
                 ), 'label' => 'restaurant.tel'
             ))
             ->add('email', EmailType::class, array(

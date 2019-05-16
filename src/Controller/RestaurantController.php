@@ -289,6 +289,8 @@ class RestaurantController extends AbstractController
             }
 
             $em->flush();
+
+            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
         }
 
         return $this->render('back/form/update-restaurant.html.twig', [
