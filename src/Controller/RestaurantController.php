@@ -28,10 +28,12 @@ class RestaurantController extends AbstractController
         ]);
     }
 
-    public function restaurantDetailAdmin(Restaurant $restaurant)
+    public function restaurantDetailAdmin(Restaurant $restaurant, Entree $entree, EntityManagerInterface $em)
     {
+        $entrees = $em->getRepository(Entree::class)->findAll();
         return $this->render('back/restaurant-detail-admin.html.twig', [
             'restaurant' => $restaurant,
+            'entrees' => $entrees,
         ]);
     }
 
@@ -52,7 +54,7 @@ class RestaurantController extends AbstractController
             $em->persist($resto);
             $em->flush();   
             
-            return $this->redirectToRoute('back/restaurant-detail-admin.html.twig', ['id' => $resto->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $resto->getId()]);
         }
        
         return $this->render('back/form/add-restaurant.html.twig', [
@@ -74,7 +76,7 @@ class RestaurantController extends AbstractController
             $em->persist($entree);
             $em->flush();
 
-            return $this->redirectToRoute('back/restaurant-detail-admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
         }
        
         return $this->render('back/form/add-entree.html.twig',

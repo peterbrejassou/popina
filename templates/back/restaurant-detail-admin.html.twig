@@ -1,49 +1,57 @@
 {% extends 'front/base.html.twig' %}
 
 {% block content %}
-    <div class="home">
-        <h1>{{restaurant.nom}}</h1>
-        <div>
-            <h2> Votre adresse </h2>
-            <p> {{restaurant.adresse}}</p>
-        </div>
-        <div>
-            <h2> Votre code postal </h2>
-            <p> {{restaurant.codePostal}}</p>
-        </div>
-        <div>
-            <h2> Votre ville </h2>
-            <p> {{restaurant.ville}}</p>
-        </div>
-        <div>
-            <h2> Numéro de téléphone </h2>
-            <p> {{restaurant.telephone}}</p>
-        </div>
-        <div>
-            <h2> Adresse mail </h2>
-            <p> {{restaurant.email}}</p>
-        </div>
-        <div>
-            <h2> Votre site web </h2>
-            <p> {{restaurant.siteWeb}}</p>
-        </div>
-        <div>
-            <h2> Vos Horaires </h2>
-            <p> {{restaurant.horaires}}</p>
-        </div>
-        <div>
-            <h2> Type de restaurant </h2>
-            <p> {{restaurant.type}}</p>
-        </div>
-        <div>
-           <h2> Images </h2>
-           <img  src="/uploads/photos/{{restaurant.photo}}" />  
+    <div class="restaurant--detail">
+        <div class="restaurant--infos"> 
+            <div class="restaurant--left">  
+                <h1>{{restaurant.nom}}</h1>
+                <div>
+                    <h2> Votre adresse </h2>
+                    <p> {{restaurant.adresse}}</p>
+                </div>
+                <div>
+                    <h2> Votre code postal </h2>
+                    <p> {{restaurant.codePostal}}</p>
+                </div>
+                <div>
+                    <h2> Votre ville </h2>
+                    <p> {{restaurant.ville}}</p>
+                </div>
+                <div>
+                    <h2> Votre site web </h2>
+                    <p> {{restaurant.siteWeb}}</p>
+                </div>
+                <div>
+                    <h2> Type de restaurant </h2>
+                    <p> {{restaurant.type}}</p>
+                </div>
+            </div>
+            <div class="restaurant--right"> 
+                <div class="restaurant--img"><img  src="/uploads/photos/{{restaurant.photo}}" />   </div>
+                
+                <div class="restaurant--adresse"> 
+                    <p> {{restaurant.telephone}}</p>
+                    <p> {{restaurant.email}}</p>
+                    <p> {{restaurant.horaires}}</p>
+                </div>
+            </div>
         </div>
 
-        <a href="{{path('add-entree', {id:restaurant.id})}}"> Ajouter une entrée </a>
-        <a href="{{path('add-plat', {id:restaurant.id})}}"> Ajouter un plat </a>
-        <a href="{{path('add-dessert', {id:restaurant.id})}}"> Ajouter un dessert </a>
-        <a href="{{path('add-boisson', {id:restaurant.id})}}"> Ajouter une boisson </a>
+        <div class="plat--infos"> 
+
+        {% for entree in entrees %}
+            <p>{{entree.nom}}</p>
+            <p>{{entree.description}}</p>
+            <p>{{entree.prix}}</p>
+        {% endfor %}
+           
+        </div>
+        <div class="restaurant--carte"> 
+            <a href="{{path('add-entree', {id:restaurant.id})}}"> Ajouter une entrée </a>
+            <a href="{{path('add-plat', {id:restaurant.id})}}"> Ajouter un plat </a>
+            <a href="{{path('add-dessert', {id:restaurant.id})}}"> Ajouter un dessert </a>
+            <a href="{{path('add-boisson', {id:restaurant.id})}}"> Ajouter une boisson </a>
+        </div>
     </div>
 
 {% endblock %}

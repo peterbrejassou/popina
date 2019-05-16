@@ -4,14 +4,15 @@
 
 <div class="home">
     <div class="container">
-        <div class="row">
+        <div class="row card--container">
             {% for restaurant in restaurants %}
-                <div class="col-sm card">
-                    <img class="card-img-top" src="/uploads/photos/{{ restaurant.photo }}" alt="Image restaurant">
+                <div class="card card--item">
+                    <div class="card-img-top card--img"><img  src="/uploads/photos/{{ restaurant.photo }}" alt="Image restaurant"><p class="card--type">{{restaurant.type}}</p> </div>
+                    
                     <div class="card-body">
                         <h5 class="card-title">{{ restaurant.nom }}</h5>
                         <p class="card-text">{{ restaurant.adresse }}</p>
-                        <a href="{{ path('restaurant_detail', {id: restaurant.id}) }}" class="btn btn-primary">Détails</a>
+                        <a href="{{ path('restaurant_detail', {id: restaurant.id}) }}" class="btn">Détails</a>
                     </div>
                 </div>
             {% endfor %}
