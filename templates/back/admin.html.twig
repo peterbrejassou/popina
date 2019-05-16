@@ -1,6 +1,8 @@
 {% extends 'front/base.html.Twig' %}
 
 {% block content %}
+
+<section class="admin">
     <h1>{{ 'global.admin'|trans }}</h1>
 
     <h3>{{ 'restaurant.liste'|trans }}</h3>
@@ -16,13 +18,14 @@
                 <tr>
                     <td>{{ restaurant.id }}</td>
                     <td>{{ restaurant.nom }}</td>
-                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">{{ 'restaurant.update'|trans }}</a></td>
-                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}">{{ 'restaurant.details'|trans }}</a></td>
-                    <td><a href="{{ path('remove_restaurant', {id: restaurant.id}) }}">Supprimer</a></td>
+                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}" class="btn">{{ 'restaurant.update'|trans }}</a></td>
+                    <td><a href="{{ path('restaurant_detail_admin', {id: restaurant.id}) }}" class="btn">{{ 'restaurant.details'|trans }}</a></td>
+                    <td><a href="{{ path('remove_restaurant', {id: restaurant.id}) }}" class="btn">{{ 'restaurant.remove'|trans }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
     </table>
 
-    <a href="{{ path('add_restaurant') }}">{{ 'restaurant.add'|trans }}</a>
+    <a href="{{ path('add_restaurant') }}" class="btn btn--add">{{ 'restaurant.add'|trans }}</a>
+</section>
 {% endblock %}

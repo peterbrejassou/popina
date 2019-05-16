@@ -55,6 +55,7 @@ restaurant:
   add: ajouter un restaurant
   update: modifier
   details: voir le detail
+  remove: supprimer
   detail: détail
   contact: contacter le restaurateur
 

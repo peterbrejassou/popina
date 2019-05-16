@@ -4,6 +4,19 @@ h1{
   text-align: center;
 }
 
+h2{
+  font-style: 20px;
+}
+.btn{
+  background-color: #d5cabc;
+  &:hover{
+    background-color: #a89d8c;
+  }
+  &::first-letter{
+    text-transform: capitalize;
+  }
+}
+// HEADER
 nav{
   background-color: #a89d8c;
 }
@@ -11,6 +24,7 @@ nav{
   color: #426782;
 } 
 
+// HOMEPAGE
 .card{
   box-shadow: 6px 5px 31px -11px rgba(168,157,140,1);
   &--container{
@@ -65,7 +79,22 @@ nav{
     }
   }
 }
+.list-group-item{
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
 
+.linkFilter{
+  display: block;
+}
+
+// RESTAURANT DETAIL
+.title{
+  font-size: 20px;
+  &::first-letter{
+    text-transform: capitalize;
+  }
+} 
 .restaurant{
  
   &--infos{
@@ -86,16 +115,25 @@ nav{
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
   }
+  &--detail{
+    padding: 40px 0;
+  }
+}
+.carte{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &>div{
+    width: 45%;
+  }
+
+  &--item{
+    border-bottom: 1px solid #a89d8c;
+    margin-bottom: 20px;
+  }
 }
 
-.list-group-item{
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
 
-.linkFilter{
-  display: block;
-}
 
 .imgRestaurant{
   width: 150px;
@@ -111,5 +149,42 @@ footer{
   font-size: 10px;
   //background-color: lightgrey;
   padding: 15px 0;
+}
+
+
+//ADMIN PAGE
+
+.admin{
+  h1, h3{
+    &::first-letter{
+      text-transform: capitalize;
+    }
+  }
+
+  table{
+    width: 100%;
+  }
+ 
+  tr{
+    border-bottom: 1px solid #d5cabc;
+  }
+  .btn{
+    background-color: #d5cabc;
+    color: #426782;
+    outline: none;
+    &::first-letter{
+      text-transform: capitalize;
+    }
+    &:hover{
+      background-color: #a89d8c;
+    }
+    &--add{
+      margin-top: 30px;
+    }
+  }
+
+  tr{
+    height: 60px;
+  }
 }
 

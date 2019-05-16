@@ -36,6 +36,7 @@ restaurant:
   add: aggiungere un ristorante
   update: modifica
   details: vedi il dettaglio
+  remove: cancellare
   detail: dettaglio
   contact: contattare il conservatore
 
