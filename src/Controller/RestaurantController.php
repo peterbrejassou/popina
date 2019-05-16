@@ -47,7 +47,7 @@ class RestaurantController extends AbstractController
     //form ajout restaurant
     public function addRestaurant(Request $request, EntityManagerInterface $em)
     {
-        $resto = new Restaurant();
+        $resto = new Restaurant(null, null, null, null, null, null, null, null, null, null, null);
         $formulaire = $this->createForm(RestaurantType::class, $resto);
         $formulaire->handleRequest($request);
 
@@ -71,7 +71,7 @@ class RestaurantController extends AbstractController
     //ajout d'une entrée
     public function addEntree(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $entree = new Entree();
+        $entree = new Entree(null, null, null, null, null);
         $entree_ajout = $this->createForm(EntreeType::class, $entree);
         $entree_ajout->handleRequest($request);
 
@@ -93,7 +93,7 @@ class RestaurantController extends AbstractController
     // ajout d'un plat
     public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $plat = new Plat();
+        $plat = new Plat(null, null, null, null, null);
         $plat_ajout = $this->createForm(PlatType::class, $plat);
         $plat_ajout->handleRequest($request);
 
@@ -113,7 +113,7 @@ class RestaurantController extends AbstractController
     // ajout d'un dessert
     public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $dessert = new Dessert();
+        $dessert = new Dessert(null, null, null, null, null);
         $dessert_ajout = $this->createForm(DessertType::class, $dessert);
         $dessert_ajout->handleRequest($request);
 
@@ -134,7 +134,7 @@ class RestaurantController extends AbstractController
     // ajout d'une boisson
     public function addBoisson(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $boisson = new Boisson();
+        $boisson = new Boisson(null, null, null, null, null, null);
         $boisson_ajout = $this->createForm(BoissonType::class, $boisson);
         $boisson_ajout->handleRequest($request);
 
