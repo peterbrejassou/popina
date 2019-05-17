@@ -10,9 +10,6 @@ use App\Entity\Boisson;
 use App\Entity\Contact;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Psr\Log\LoggerInterface;
@@ -59,10 +56,9 @@ class RestaurantController extends AbstractController
     //form ajout restaurant
     public function addRestaurant(Request $request, EntityManagerInterface $em, LoggerInterface $logger)
     {
-
         $logger->info('Un restaurant a été ajouté');
 
-        $restaurant = new Restaurant(null, null, null, null, null, null, null, null, null, null, null);
+        $restaurant = new Restaurant(null, null, null, null, null, null, null, null, null, null, null, null);
         $formulaire = $this->createForm(RestaurantType::class, $restaurant);
         $formulaire->handleRequest($request);
 
@@ -78,7 +74,7 @@ class RestaurantController extends AbstractController
             $em->persist($restaurant);
             $em->flush();   
             
-            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
        
         return $this->render('back/form/add-restaurant.html.twig', [
@@ -89,7 +85,7 @@ class RestaurantController extends AbstractController
     //ajout d'une entrée
     public function addEntree(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $entree = new Entree(null, null, null, null, null);
+        $entree = new Entree(null, null, null, null, null, null);
         $entree_ajout = $this->createForm(EntreeType::class, $entree);
         $entree_ajout->handleRequest($request);
 
@@ -98,7 +94,7 @@ class RestaurantController extends AbstractController
             $em->persist($entree);
             $em->flush();
 
-            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
        
         return $this->render('back/form/add-entree.html.twig',
@@ -111,7 +107,7 @@ class RestaurantController extends AbstractController
     // ajout d'un plat
     public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $plat = new Plat(null, null, null, null, null);
+        $plat = new Plat(null, null, null, null, null, null);
         $plat_ajout = $this->createForm(PlatType::class, $plat);
         $plat_ajout->handleRequest($request);
 
@@ -120,7 +116,7 @@ class RestaurantController extends AbstractController
             $em->persist($plat);
             $em->flush();
 
-            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
         
         return $this->render('back/form/add-plat.html.twig',
@@ -133,7 +129,7 @@ class RestaurantController extends AbstractController
     // ajout d'un dessert
     public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $dessert = new Dessert(null, null, null, null, null);
+        $dessert = new Dessert(null, null, null, null, null, null);
         $dessert_ajout = $this->createForm(DessertType::class, $dessert);
         $dessert_ajout->handleRequest($request);
 
@@ -142,7 +138,7 @@ class RestaurantController extends AbstractController
             $em->persist($dessert);
             $em->flush();
 
-            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
         
         return $this->render('back/form/add-dessert.html.twig',
@@ -156,7 +152,7 @@ class RestaurantController extends AbstractController
     // ajout d'une boisson
     public function addBoisson(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
     {
-        $boisson = new Boisson(null, null, null, null, null, null);
+        $boisson = new Boisson(null, null, null, null, null, null, null);
         $boisson_ajout = $this->createForm(BoissonType::class, $boisson);
         $boisson_ajout->handleRequest($request);
 
@@ -165,7 +161,7 @@ class RestaurantController extends AbstractController
             $em->persist($boisson);
             $em->flush();
 
-            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
 
         return $this->render('back/form/add-boisson.html.twig',
@@ -177,13 +173,11 @@ class RestaurantController extends AbstractController
 
     public function contact(Request $request, \Swift_Mailer $mailer, Restaurant $restaurant, EntityManagerInterface $em)
     {
-
         $contact = new Contact();
         $contact_form =  $this->createForm(ContactType::class, $contact);
         $contact_form->handleRequest($request);
 
         if ($contact_form->isSubmitted() && $contact_form->isValid()) {
-
             $mail = $contact_form['mail']->getData();
             $content = $contact_form['message']->getData();
             $name = $contact_form['name']->getData();
@@ -195,7 +189,6 @@ class RestaurantController extends AbstractController
 
             $em->persist($contact);
             $em->flush();   
-            
 
             $message = (new \Swift_Message('Confirmation Demande de contact depuis La Popina'))
                 ->setFrom('peter.brejassou@gmail.com')
@@ -204,12 +197,12 @@ class RestaurantController extends AbstractController
 
             $mailer->send($message);
 
-            $message_resto = (new \Swift_Message('Demande de contact depuis La Popina'))
+            $message_restaurant = (new \Swift_Message('Demande de contact depuis La Popina'))
                 ->setFrom('peter.brejassou@gmail.com')
                 ->setTo($restaurant->getEmail())
                 ->setBody($this->renderView('back/emails/contact-mail.html.twig', ['name' => $name, 'lastname' => $lastname, 'phone' => $phone, 'content' => $content, 'mail' => $mail]), 'text/html');
 
-            $mailer->send($message_resto);
+            $mailer->send($message_restaurant);
 
             return $this->redirectToRoute('restaurant_detail', ['id' => $restaurant->getId()]);
         }
@@ -228,47 +221,39 @@ class RestaurantController extends AbstractController
     }
 
     // Suppression d'une entrée
-    public function removeEntree(EntityManagerInterface $em, $id_restaurant, Entree $entree)
+    public function removeEntree(EntityManagerInterface $em, String $slug_restaurant, Entree $entree)
     {
         $em->remove($entree);
         $em->flush();
 
-        return $this->redirectToRoute('restaurant_detail_admin', [
-            'id' => $id_restaurant
-        ]);
+        return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $slug_restaurant]);
     }
 
     // Suppression d'un plat
-    public function removePlat(EntityManagerInterface $em, $id_restaurant, Plat $plat)
+    public function removePlat(EntityManagerInterface $em, String $slug_restaurant, Plat $plat)
     {
         $em->remove($plat);
         $em->flush();
 
-        return $this->redirectToRoute('restaurant_detail_admin', [
-            'id' => $id_restaurant
-        ]);
+        return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $slug_restaurant]);
     }
 
     // Suppression d'un dessert
-    public function removeDessert(EntityManagerInterface $em, $id_restaurant, Dessert $dessert)
+    public function removeDessert(EntityManagerInterface $em, String $slug_restaurant, Dessert $dessert)
     {
         $em->remove($dessert);
         $em->flush();
 
-        return $this->redirectToRoute('restaurant_detail_admin', [
-            'id' => $id_restaurant
-        ]);
+        return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $slug_restaurant]);
     }
 
     // Suppression d'une boisson
-    public function removeBoisson(EntityManagerInterface $em, $id_restaurant, Boisson $boisson)
+    public function removeBoisson(EntityManagerInterface $em, String $slug_restaurant, Boisson $boisson)
     {
         $em->remove($boisson);
         $em->flush();
 
-        return $this->redirectToRoute('restaurant_detail_admin', [
-            'id' => $id_restaurant
-        ]);
+        return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $slug_restaurant]);
     }
 
     // Mise à jour d'un restaurant
@@ -290,7 +275,7 @@ class RestaurantController extends AbstractController
 
             $em->flush();
 
-            return $this->redirectToRoute('restaurant_detail_admin', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
 
         return $this->render('back/form/update-restaurant.html.twig', [

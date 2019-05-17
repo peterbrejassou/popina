@@ -19,6 +19,11 @@ class Dessert
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $nom;
 
     /**
@@ -40,15 +45,17 @@ class Dessert
     /**
      * Dessert constructor.
      * @param $id
+     * @param $slug
      * @param $nom
      * @param $description
      * @param $prix
      * @param $restaurant
      */
-    public function __construct($id, $nom, $description, $prix, $restaurant)
+    public function __construct($id, $slug, $nom, $description, $prix, $restaurant)
     {
         $this->id = $id;
         $this->nom = $nom;
+        $this->slug = $slug;
         $this->description = $description;
         $this->prix = $prix;
         $this->restaurant = $restaurant;
@@ -57,6 +64,16 @@ class Dessert
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
     }
 
     public function getNom(): ?string

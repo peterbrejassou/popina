@@ -84,10 +84,7 @@
                     {% endfor %}           
                 </div>
             </div>
-            
-            <a href="{{ path('contact', {id: restaurant.id}) }}" class="btn">{{ 'restaurant.contact'|trans }}</a>
+            <a href="{{ path('contact', {slug: restaurant.slug}) }}" class="btn">{{ 'restaurant.contact'|trans }}</a>
         </div>
-
     </div>
-   
 {% endblock %}

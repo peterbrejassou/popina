@@ -19,7 +19,7 @@ logout:
     controller: App\Controller\SecurityController::logout
 
 restaurant_detail:
-    path: /restaurant/{id}
+    path: /restaurant/{slug}
     controller: App\Controller\RestaurantController::restaurantDetail
 
 add_restaurant:
@@ -27,23 +27,23 @@ add_restaurant:
     controller: App\Controller\RestaurantController::addRestaurant
 
 restaurant_detail_admin:
-    path: /admin/restaurant/{id}
+    path: /admin/restaurant/{slug}
     controller: App\Controller\RestaurantController::restaurantDetailAdmin
 
 add_entree:
-    path: /admin/restaurant/{id}/add-entree
+    path: /admin/restaurant/{slug}/add-entree
     controller: App\Controller\RestaurantController::addEntree
 
 add_plat:
-    path: /admin/restaurant/{id}/add-plat
+    path: /admin/restaurant/{slug}/add-plat
     controller: App\Controller\RestaurantController::addPlat
 
 add_dessert:
-    path: /admin/restaurant/{id}/add-dessert
+    path: /admin/restaurant/{slug}/add-dessert
     controller: App\Controller\RestaurantController::addDessert
 
 add_boisson:
-    path: /admin/restaurant/{id}/add-boisson
+    path: /admin/restaurant/{slug}/add-boisson
     controller: App\Controller\RestaurantController::addBoisson
 
 admin:
@@ -51,29 +51,29 @@ admin:
     controller: App\Controller\AdminController::admin
 
 contact:
-    path: /restaurant/{id}/contact
+    path: /restaurant/{slug}/contact
     controller: App\Controller\RestaurantController::contact
 
 update_restaurant:
-    path: /admin/restaurant/{id}/update
+    path: /admin/restaurant/{slug}/update
     controller: App\Controller\RestaurantController::updateRestaurant
 
 remove_restaurant:
-    path: /admin/restaurant/{id}/remove
+    path: /admin/restaurant/{slug}/remove
     controller: App\Controller\RestaurantController::removeRestaurant
 
 remove_entree:
-    path: /admin/restaurant/{id_restaurant}/entree/{id}/remove
+    path: /admin/restaurant/{slug_restaurant}/entree/{slug}/remove
     controller: App\Controller\RestaurantController::removeEntree
 
 remove_plat:
-    path: /admin/restaurant/{id_restaurant}/plat/{id}/remove
+    path: /admin/restaurant/{slug_restaurant}/plat/{slug}/remove
     controller: App\Controller\RestaurantController::removePlat
 
 remove_dessert:
-    path: /admin/restaurant/{id_restaurant}/dessert/{id}/remove
+    path: /admin/restaurant/{slug_restaurant}/dessert/{slug}/remove
     controller: App\Controller\RestaurantController::removeDessert
 
 remove_boisson:
-    path: /admin/restaurant/{id_restaurant}/boisson/{id}/remove
+    path: /admin/restaurant/{slug_restaurant}/boisson/{slug}/remove
     controller: App\Controller\RestaurantController::removeBoisson

@@ -20,12 +20,12 @@ class TypeRestaurant
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $slug;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $slug;
+    private $nom;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Restaurant", mappedBy="type", cascade={"persist", "remove"})
@@ -39,17 +39,27 @@ class TypeRestaurant
      * @param $slug
      * @param $restaurants
      */
-    public function __construct($id, $nom, $slug, $restaurants)
+    public function __construct($id, $slug, $nom, $restaurants)
     {
         $this->id = $id;
-        $this->nom = $nom;
         $this->slug = $slug;
+        $this->nom = $nom;
         $this->restaurants = $restaurants;
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
     }
 
     public function getNom(): ?string
@@ -62,16 +72,6 @@ class TypeRestaurant
         $this->nom = $nom;
 
         return $this;
-    }
-
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    public function setSlug($slug): void
-    {
-        $this->slug = $slug;
     }
 
     public function getRestaurants()

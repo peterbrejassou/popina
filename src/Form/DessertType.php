@@ -13,6 +13,7 @@ class DessertType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('slug', TextType::class,['label' => 'carte.slug'])
             ->add('nom', TextType::class,['label' => 'carte.nom'])
             ->add('description', TextType::class,['label' => 'carte.description'])
             ->add('save', SubmitType::class, ['label' => 'carte.save']);

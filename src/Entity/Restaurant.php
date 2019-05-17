@@ -22,6 +22,11 @@ class Restaurant
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $slug;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $nom;
 
     /**
@@ -92,6 +97,7 @@ class Restaurant
     /**
      * Restaurant constructor.
      * @param $id
+     * @param $slug
      * @param $nom
      * @param $adresse
      * @param $code_postal
@@ -103,9 +109,10 @@ class Restaurant
      * @param $type
      * @param $photo
      */
-    public function __construct($id, $nom, $adresse, $code_postal, $ville, $telephone, $email, $site_web, $horaires, $type, $photo)
+    public function __construct($id, $slug, $nom, $adresse, $code_postal, $ville, $telephone, $email, $site_web, $horaires, $type, $photo)
     {
         $this->id = $id;
+        $this->slug = $slug;
         $this->nom = $nom;
         $this->adresse = $adresse;
         $this->code_postal = $code_postal;
@@ -125,6 +132,16 @@ class Restaurant
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function setSlug($slug): void
+    {
+        $this->slug = $slug;
     }
 
     public function getNom(): ?string

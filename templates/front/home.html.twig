@@ -26,7 +26,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ restaurant.nom }}</h5>
                                     <p class="card-text">{{ restaurant.adresse }}</p>
-                                    <a href="{{ path('restaurant_detail', {id: restaurant.id}) }}" class="btn">{{ 'restaurant.detail'|trans }}</a>
+                                    <a href="{{ path('restaurant_detail', {slug: restaurant.slug}) }}" class="btn">{{ 'restaurant.detail'|trans }}</a>
                                 </div>
                             </div>
                     {% endfor %}

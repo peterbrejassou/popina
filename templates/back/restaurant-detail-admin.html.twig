@@ -45,7 +45,7 @@
                         <p>{{entree.nom}}</p>
                         <p>{{entree.description}}</p>
                         <p>{{entree.prix|prix}}</p>
-                        <a href="{{ path('remove_entree', {id_restaurant: restaurant.id, id: entree.id}) }}">Supprimer</a>
+                        <a href="{{ path('remove_entree', {slug_restaurant: restaurant.slug, slug: entree.slug}) }}">Supprimer</a>
                     </div>
                 {% endfor %}
             </div>
@@ -56,7 +56,7 @@
                         <p>{{plat.nom}}</p>
                         <p>{{plat.description}}</p>
                         <p>{{plat.prix|prix}}</p>
-                        <a href="{{ path('remove_plat', {id_restaurant: restaurant.id, id: plat.id}) }}">Supprimer</a>
+                        <a href="{{ path('remove_plat', {slug_restaurant: restaurant.slug, slug: plat.slug}) }}">Supprimer</a>
                     </div>
                 {% endfor %}
             </div>
@@ -67,7 +67,7 @@
                         <p>{{dessert.nom}}</p>
                         <p>{{dessert.description}}</p>
                         <p>{{dessert.prix|prix}}</p>
-                        <a href="{{ path('remove_dessert', {id_restaurant: restaurant.id, id: dessert.id}) }}">Supprimer</a>
+                        <a href="{{ path('remove_dessert', {slug_restaurant: restaurant.slug, slug: dessert.slug}) }}">Supprimer</a>
                     </div>
                 {% endfor %}
             </div>
@@ -79,17 +79,16 @@
                     <p>{{boisson.description}}</p>
                     <p>{{boisson.prix|prix}}</p>
                     <p>{{boisson.quantite}} cl</p>
-                    <a href="{{ path('remove_boisson', {id_restaurant: restaurant.id, id: boisson.id}) }}">Supprimer</a>
+                    <a href="{{ path('remove_boisson', {slug_restaurant: restaurant.slug, slug: boisson.slug}) }}">Supprimer</a>
                 </div>
                 {% endfor %}           
             </div>
         </div>
         <div class="restaurant--carte"> 
-            <a href="{{path('add_entree', {id:restaurant.id})}}" class="btn"> {{ 'carte.link_entree'|trans }} </a>
-            <a href="{{path('add_plat', {id:restaurant.id})}}" class="btn"> {{ 'carte.link_plat'|trans }}  </a>
-            <a href="{{path('add_dessert', {id:restaurant.id})}}" class="btn">{{ 'carte.link_dessert'|trans }}  </a>
-            <a href="{{path('add_boisson', {id:restaurant.id})}}" class="btn"> {{ 'carte.link_boisson'|trans }}  </a>
+            <a href="{{path('add_entree', {slug:restaurant.slug})}}" class="btn"> {{ 'carte.link_entree'|trans }} </a>
+            <a href="{{path('add_plat', {slug:restaurant.slug})}}" class="btn"> {{ 'carte.link_plat'|trans }}  </a>
+            <a href="{{path('add_dessert', {slug:restaurant.slug})}}" class="btn">{{ 'carte.link_dessert'|trans }}  </a>
+            <a href="{{path('add_boisson', {slug:restaurant.slug})}}" class="btn"> {{ 'carte.link_boisson'|trans }}  </a>
         </div>
     </div>
-
 {% endblock %}

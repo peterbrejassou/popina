@@ -41,6 +41,7 @@ titre:
 
 restaurant:
   liste: liste des restaurants
+  slug: slug du restaurant
   nom: nom du restaurant
   adresse: adresse
   cp: code postal
@@ -60,6 +61,7 @@ restaurant:
   contact: contacter le restaurateur
 
 carte:
+  slug: slug
   nom: nom
   description: description
   quantite: quantité

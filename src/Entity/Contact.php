@@ -26,7 +26,6 @@ class Contact
      */
     private $lastname;
 
-    
      /**
      * @ORM\Column(type="string")
      */
