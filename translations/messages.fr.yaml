@@ -7,7 +7,7 @@ global:
   no_account: pas de compte ?
   contact: contactez le restaurateur
   nom: nom
-  filtre: filtre
+  filtre: types
   restaurant_detail: détail de
 
 form:
@@ -59,6 +59,7 @@ restaurant:
   remove: supprimer
   detail: détail
   contact: contacter le restaurateur
+  carte: notre carte
 
 carte:
   slug: slug
@@ -75,3 +76,7 @@ carte:
   link_plat: ajouter un plat
   link_dessert: ajouter un dessert
   link_boisson: ajouter une boisson
+
+type:
+  slug: slug
+  nom: nom

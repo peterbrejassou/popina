@@ -42,8 +42,8 @@
                 <h3 class="title">{{ 'carte.entree'|trans }}</h3>
                 {% for entree in entrees %}
                     <div class="carte--item"> 
-                        <p>{{entree.nom}}</p>
-                        <p>{{entree.description}}</p>
+                        <p class="plat_nom">{{entree.nom}}</p>
+                        <p class="desc">{{entree.description}}</p>
                         <p>{{entree.prix|prix}}</p>
                         <a href="{{ path('remove_entree', {slug_restaurant: restaurant.slug, slug: entree.slug}) }}">Supprimer</a>
                     </div>
@@ -53,8 +53,8 @@
                 <h3 class="title">{{ 'carte.plat'|trans }}</h3>
                 {% for plat in plats %}
                     <div class="carte--item">
-                        <p>{{plat.nom}}</p>
-                        <p>{{plat.description}}</p>
+                        <p class="plat_nom">{{plat.nom}}</p>
+                        <p class="desc">{{plat.description}}</p>
                         <p>{{plat.prix|prix}}</p>
                         <a href="{{ path('remove_plat', {slug_restaurant: restaurant.slug, slug: plat.slug}) }}">Supprimer</a>
                     </div>
@@ -64,8 +64,8 @@
                 <h3 class="title">{{ 'carte.dessert'|trans }}</h3>
                 {% for dessert in desserts %}
                     <div class="carte--item">
-                        <p>{{dessert.nom}}</p>
-                        <p>{{dessert.description}}</p>
+                        <p class="plat_nom">{{dessert.nom}}</p>
+                        <p class="desc">{{dessert.description}}</p>
                         <p>{{dessert.prix|prix}}</p>
                         <a href="{{ path('remove_dessert', {slug_restaurant: restaurant.slug, slug: dessert.slug}) }}">Supprimer</a>
                     </div>
@@ -75,8 +75,8 @@
                 <h3 class="title">{{ 'carte.boisson'|trans }}</h3>
                 {% for boisson in boissons %}
                     <div class="carte--item">
-                    <p>{{boisson.nom}}</p>
-                    <p>{{boisson.description}}</p>
+                    <p class="plat_nom">{{boisson.nom}}</p>
+                    <p class="desc">{{boisson.description}}</p>
                     <p>{{boisson.prix|prix}}</p>
                     <p>{{boisson.quantite}} cl</p>
                     <a href="{{ path('remove_boisson', {slug_restaurant: restaurant.slug, slug: boisson.slug}) }}">Supprimer</a>

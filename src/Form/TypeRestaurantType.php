@@ -1,30 +1,27 @@
 <?php
 
 namespace App\Form;
-use App\Entity\Dessert;
+use App\Entity\TypeRestaurant;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DessertType extends AbstractType
+class TypeRestaurantType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('slug', TextType::class,['label' => 'carte.slug'])
-            ->add('nom', TextType::class,['label' => 'carte.nom'])
-            ->add('description', TextType::class,['label' => 'carte.description'])
-            ->add('prix', NumberType::class,['label' => 'carte.prix'])
+            ->add('slug', TextType::class,['label' => 'type.slug'])
+            ->add('nom', TextType::class,['label' => 'type.nom'])
             ->add('save', SubmitType::class, ['label' => 'carte.save']);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Dessert::class,
+            'data_class' => TypeRestaurant::class,
         ]);
     }
 }

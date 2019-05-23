@@ -47,6 +47,7 @@ class RestaurantType extends AbstractType
             ->add('type', EntityType::class, [
                 'class' => TypeRestaurant::class,
                 'choice_label' => 'nom',
+                'label' => 'restaurant.type'
             ])
             ->add('photo', FileType::class, array(
                 'constraints' => array(
