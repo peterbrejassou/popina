@@ -1,6 +1,8 @@
 <?php
 namespace App\Tests\Controller;
 
+use App\Entity\TypeRestaurant;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -23,8 +25,8 @@ class RestaurantControllerTest extends WebTestCase
 
         // Vérification de l'obtention du code de status 200 -> OK
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Le status code de la page n'est pas 200.");
-        // Vérification du nombre de h2 dans la page -> 5 pour la page détail restaurant
-        $this->assertCount(5, $crawler->filter('h2'), "Il n'y a pas 5 h2 dans la page");
+        // Vérification du nombre de h2 dans la page -> 6 pour la page détail restaurant
+        $this->assertCount(6, $crawler->filter('h2'), "Il n'y a pas 6 h2 dans la page");
         // Vérification du nombre de h3 dans la page -> 4 pour la page détail restaurant
         $this->assertCount(4, $crawler->filter('h3'), "Il n'y a pas 4 h3 dans la page");
     }

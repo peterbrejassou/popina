@@ -1,2 +1,5 @@
 validations:
   telephone: "Veuillez saisir un numéro de téléphone suivant ce format : +33xxxxxxxx ou 0xxxxxxxxx"
+
+form:
+  passwords_must_match: "Les mots de passe doivent correspondre"

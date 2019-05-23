@@ -38,7 +38,6 @@ class HomeController extends AbstractController
 
     // public function changeLocale(Request $request)
     // {
-        
     //     $form = $this->createFormBuilder(null)
     //         ->add('locale', ChoiceType::class, [
     //             'choices' =>  [

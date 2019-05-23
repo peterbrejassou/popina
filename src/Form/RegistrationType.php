@@ -22,7 +22,6 @@ class RegistrationType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'form.passwords_must_match',
                 'options' => ['attr' => ['class' => 'password-field']],
-                'required' => true,
                 'first_options'  => ['label' => 'form.password'],
                 'second_options' => ['label' => 'form.confirm_password']
             ])
@@ -33,6 +32,7 @@ class RegistrationType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'required' => true,
         ]);
     }
 }
