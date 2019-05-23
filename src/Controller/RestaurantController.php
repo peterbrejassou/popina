@@ -86,7 +86,7 @@ class RestaurantController extends AbstractController
         ]);
     }
 
-    //ajout d'une entrée
+    //ajout d'un type de restaurant
     public function addType(Request $request, EntityManagerInterface $em, Logger $restaurantLog)
     {
         $new_type = new TypeRestaurant(null, null, null, null);
