@@ -65,7 +65,7 @@ class Restaurant
     private $horaires;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeRestaurant", inversedBy="restaurants", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeRestaurant", inversedBy="restaurants")
      */
     private $type;
 
