@@ -1,0 +1,82 @@
+global:
+  welcome: bienvenue
+  register: inscription
+  login: connexion
+  logout: déconnexion
+  admin: administration
+  no_account: pas de compte ?
+  contact: contactez le restaurateur
+  nom: nom
+  filtre: types
+  restaurant_detail: détail de
+
+form:
+  username: nom d'utilisateur
+  email: adresse email
+  password: mot de passe
+  confirm_password: confirmation du mot de passe
+  passwords_must_match: les mots de passe doivent correspondre
+  message: message
+  send: envoyer
+  save: valider
+  entree: nom de l'entrée
+  plat: nom du plat
+  dessert: nom du dessert
+  boisson: nom de la boisson
+
+contact:
+  name: votre prénom
+  lastname: votre nom
+  tel: numéro de téléphone
+  email: votre adresse mail
+  message: votre message
+  save: envoyer
+
+titre:
+  restaurant: ajouter votre restaurant
+  entree: ajouter votre entrée
+  plat:  ajouter votre plat
+  dessert:  ajouter votre dessert
+  boisson:  ajouter votre boisson
+
+restaurant:
+  liste: liste des restaurants
+  slug: slug du restaurant
+  nom: nom du restaurant
+  adresse: adresse
+  cp: code postal
+  ville: ville
+  tel: numéro de téléphone
+  email: adresse mail
+  site_web: site web
+  horaire: horaires
+  type: type de nourriture
+  photos: photos
+  save: créer
+  add: ajouter un restaurant
+  update: modifier
+  details: voir le detail
+  remove: supprimer
+  detail: détail
+  contact: contacter le restaurateur
+  carte: notre carte
+
+carte:
+  slug: slug
+  nom: nom
+  description: description
+  quantite: quantité
+  prix: prix
+  save: ajouter
+  entree: entree
+  plat: plat
+  dessert: dessert
+  boisson: boisson
+  link_entree: ajouter une entrée
+  link_plat: ajouter un plat
+  link_dessert: ajouter un dessert
+  link_boisson: ajouter une boisson
+
+type:
+  slug: slug
+  nom: nom
