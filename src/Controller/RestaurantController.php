@@ -8,17 +8,20 @@ use App\Entity\Plat;
 use App\Entity\Dessert;
 use App\Entity\Boisson;
 use App\Entity\Contact;
+use App\Entity\TypeRestaurant;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Psr\Log\LoggerInterface;
+use Symfony\Bridge\Monolog\Logger;
 use App\Form\RestaurantType;
 use App\Form\EntreeType;
 use App\Form\PlatType;
 use App\Form\DessertType;
 use App\Form\BoissonType;
 use App\Form\ContactType;
+use App\Form\TypeRestaurantType;
 
 class RestaurantController extends AbstractController
 {
@@ -54,10 +57,11 @@ class RestaurantController extends AbstractController
 
 
     //form ajout restaurant
-    public function addRestaurant(Request $request, EntityManagerInterface $em, LoggerInterface $logger)
+    public function addRestaurant(Request $request, EntityManagerInterface $em, Logger $restaurantLog)
     {
-        $logger->info('Un restaurant a été ajouté');
+      
 
+       
         $restaurant = new Restaurant(null, null, null, null, null, null, null, null, null, null, null, null);
         $formulaire = $this->createForm(RestaurantType::class, $restaurant);
         $formulaire->handleRequest($request);
@@ -73,7 +77,7 @@ class RestaurantController extends AbstractController
 
             $em->persist($restaurant);
             $em->flush();   
-            
+            $restaurantLog->info('un restaurant a été ajouté', ['nom du restaurant'=> $restaurant->getNom()]);
             return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
        
@@ -83,7 +87,28 @@ class RestaurantController extends AbstractController
     }
 
     //ajout d'une entrée
-    public function addEntree(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
+    public function addType(Request $request, EntityManagerInterface $em, Logger $restaurantLog)
+    {
+        $new_type = new TypeRestaurant(null, null, null, null);
+        $type_ajout = $this->createForm(TypeRestaurantType::class, $new_type);
+        $type_ajout->handleRequest($request);
+
+        if ($type_ajout->isSubmitted() && $type_ajout->isValid()){
+           
+            $em->persist($new_type);
+            $em->flush();  
+            $restaurantLog->info('le type de restaurant ajouté ',['nom'=> $new_type->getNom()]);
+            return $this->redirectToRoute('home');
+        }
+       
+        return $this->render('back/form/add-type.html.twig',
+        [
+            'new_type' => $type_ajout->createView(),
+        ]);
+    }
+
+    //ajout d'une entrée
+    public function addEntree(Request $request, EntityManagerInterface $em, Restaurant $restaurant, Logger $restaurantLog)
     {
         $entree = new Entree(null, null, null, null, null, null);
         $entree_ajout = $this->createForm(EntreeType::class, $entree);
@@ -93,7 +118,7 @@ class RestaurantController extends AbstractController
             $restaurant->addEntree($entree);
             $em->persist($entree);
             $em->flush();
-
+            $restaurantLog->info('une entrée a été ajoutée', ['nom de l\'entrée' => $entree->getNom()]);
             return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
        
@@ -105,7 +130,7 @@ class RestaurantController extends AbstractController
     }
 
     // ajout d'un plat
-    public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
+    public function addPlat(Request $request, EntityManagerInterface $em, Restaurant $restaurant, Logger $restaurantLog)
     {
         $plat = new Plat(null, null, null, null, null, null);
         $plat_ajout = $this->createForm(PlatType::class, $plat);
@@ -115,7 +140,7 @@ class RestaurantController extends AbstractController
             $restaurant->addPLat($plat);
             $em->persist($plat);
             $em->flush();
-
+            $restaurantLog->info('un plat a été ajouté',['nom du plat' => $plat->getNom()]);
             return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
         
@@ -127,7 +152,7 @@ class RestaurantController extends AbstractController
     }
 
     // ajout d'un dessert
-    public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
+    public function addDessert(Request $request, EntityManagerInterface $em, Restaurant $restaurant, Logger $restaurantLog)
     {
         $dessert = new Dessert(null, null, null, null, null, null);
         $dessert_ajout = $this->createForm(DessertType::class, $dessert);
@@ -137,7 +162,7 @@ class RestaurantController extends AbstractController
             $restaurant->addDessert($dessert);
             $em->persist($dessert);
             $em->flush();
-
+            $restaurantLog->info('un dessert a été ajouté',['nom du dessert' => $dessert->getNom()]);
             return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
         
@@ -150,7 +175,7 @@ class RestaurantController extends AbstractController
 
 
     // ajout d'une boisson
-    public function addBoisson(Request $request, EntityManagerInterface $em, Restaurant $restaurant)
+    public function addBoisson(Request $request, EntityManagerInterface $em, Restaurant $restaurant, Logger $restaurantLog)
     {
         $boisson = new Boisson(null, null, null, null, null, null, null);
         $boisson_ajout = $this->createForm(BoissonType::class, $boisson);
@@ -160,7 +185,7 @@ class RestaurantController extends AbstractController
             $restaurant->addBoisson($boisson);
             $em->persist($boisson);
             $em->flush();
-
+            $restaurantLog->info('une boisson a été ajoutée',['nom de la boisson' => $boisson->getNom()]);            
             return $this->redirectToRoute('restaurant_detail_admin', ['slug' => $restaurant->getSlug()]);
         }
 
@@ -204,7 +229,7 @@ class RestaurantController extends AbstractController
 
             $mailer->send($message_restaurant);
 
-            return $this->redirectToRoute('restaurant_detail', ['id' => $restaurant->getId()]);
+            return $this->redirectToRoute('restaurant_detail', ['id' => $restaurant->getId(), 'slug' => $restaurant->getSlug()]);
         }
 
         return $this->render('front/form/contact.html.twig', [

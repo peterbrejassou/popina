@@ -6,6 +6,9 @@ use App\Entity\Restaurant;
 use App\Entity\TypeRestaurant;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class HomeController extends AbstractController
 {
@@ -32,4 +35,22 @@ class HomeController extends AbstractController
             'filtres' => $allFiltres
         ]);
     }
+
+    // public function changeLocale(Request $request)
+    // {
+        
+    //     $form = $this->createFormBuilder(null)
+    //         ->add('locale', ChoiceType::class, [
+    //             'choices' =>  [
+    //                 'Français' => 'fr',
+    //                 'Italien' => 'it'
+    //             ]
+    //         ])
+    //         ->add('save', SubmitType::class, ['label' => 'Create Task'])
+    //         ->getForm();
+
+    //     return $this->render('/front/home.html.twig', [
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 }

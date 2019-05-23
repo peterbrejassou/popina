@@ -39,6 +39,12 @@ restaurant:
   remove: cancellare
   detail: dettaglio
   contact: contattare il conservatore
+  carte: nostra carta
+
+  
+type:
+  slug: slug
+  nom: nome
 
 contact:
   name: vostre nome

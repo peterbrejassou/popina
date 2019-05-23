@@ -9,6 +9,7 @@ h2{
 }
 .btn{
   background-color: #d5cabc;
+  outline: none;
   &:hover{
     background-color: #a89d8c;
   }
@@ -25,6 +26,34 @@ nav{
 } 
 
 // HOMEPAGE
+.filters{
+  padding-top: 40px;
+
+  h5{
+    text-transform: capitalize;
+  }
+  a{
+    color: #426782;
+    position: relative;
+    padding-left: 20px;
+    transition: all .2s ease-in-out;
+    &:hover{
+      color: #a89d8c;
+      text-decoration: none;
+      padding-left: 30px;
+      &:before{
+        left: 10px;
+      }
+    }
+    &:before{
+      transition: all .2s ease-in-out;
+      content:'→';
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
 .card{
   box-shadow: 6px 5px 31px -11px rgba(168,157,140,1);
   &--container{
@@ -119,17 +148,40 @@ nav{
     padding: 40px 0;
   }
 }
+
+.plat--infos{
+  h2{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
 .carte{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
+  h3{
+    text-decoration: underline;
+    color: #426782;
+    margin-bottom: 30px;
+  }
   &>div{
     width: 45%;
+  }
+  .entree, .plat{
+    margin-bottom: 50px;
   }
 
   &--item{
     border-bottom: 1px solid #a89d8c;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+
+    .plat_nom{
+        margin-bottom: 5px;
+    }
+    .desc{
+      font-style: italic;
+    }
   }
 }
 

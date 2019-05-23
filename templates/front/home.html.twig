@@ -4,10 +4,12 @@
 
 <div class="home">
     <div class="container">
+    {# {{ form(form) }} #}
         <div class="row ">
             
         <div class="row">
-            <div class="col-2">
+         
+            <div class="col-2 filters">
                 <h5>{{ 'global.filtre'|trans }}</h5>
                 <a class="linkFilter" href="{{ path("home") }}">Tous</a>
                 {% for filter in filtres %}

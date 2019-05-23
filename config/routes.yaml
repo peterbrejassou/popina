@@ -26,6 +26,10 @@ add_restaurant:
     path: /admin/add-restaurant
     controller: App\Controller\RestaurantController::addRestaurant
 
+add_type:
+    path: /admin/add-type
+    controller: App\Controller\RestaurantController::addType
+
 restaurant_detail_admin:
     path: /admin/restaurant/{slug}
     controller: App\Controller\RestaurantController::restaurantDetailAdmin
